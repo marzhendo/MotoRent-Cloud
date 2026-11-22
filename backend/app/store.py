@@ -169,5 +169,11 @@ class JsonStore:
                     return True
             return False
 
+    def reset_to_seed(self) -> None:
+        with self._lock:
+            import copy
+            self._data = copy.deepcopy(INITIAL_SEED_DATA)
+            self._persist_unlocked()
+
 # Global singleton instance for application use
 store = JsonStore()

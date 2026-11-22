@@ -26,12 +26,10 @@ export interface Vehicle {
   model_name: string;
   category: 'Motor' | 'Mobil';
   plate_number: string;
-  daily_rate: int_or_number;
+  daily_rate: number;
   status: 'Available' | 'Rented' | 'Maintenance';
   created_at: string;
 }
-
-type int_or_number = number;
 
 export interface VehicleCreate {
   model_name: string;
@@ -47,6 +45,26 @@ export interface VehicleUpdate {
   plate_number?: string;
   daily_rate?: number;
   status?: 'Available' | 'Rented' | 'Maintenance';
+}
+
+export interface Rental {
+  id: string;
+  customer_id: string;
+  vehicle_id: string;
+  duration_days: number;
+  daily_rate_snapshot: number;
+  total_cost: number;
+  rental_status: 'Ongoing' | 'Completed' | 'Canceled';
+  rented_at: string;
+  expected_return_at: string;
+  returned_at?: string;
+  created_at: string;
+}
+
+export interface RentalCreate {
+  customer_id: string;
+  vehicle_id: string;
+  duration_days: number;
 }
 
 export interface SystemInfo {
@@ -178,4 +196,57 @@ export async function deleteVehicle(id: string): Promise<void> {
     const err = await res.json().catch(() => ({}));
     throw new Error(err.detail || 'Failed to delete vehicle');
   }
+}
+
+// ==================== Rental APIs ====================
+
+export async function fetchRentals(
+  status?: string,
+  customerId?: string,
+  vehicleId?: string
+): Promise<Rental[]> {
+  const params = new URLSearchParams();
+  if (status) params.append('status', status);
+  if (customerId) params.append('customer_id', customerId);
+  if (vehicleId) params.append('vehicle_id', vehicleId);
+
+  const url = `${API_BASE}/rentals${params.toString() ? `?${params.toString()}` : ''}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('Failed to fetch rentals');
+  return res.json();
+}
+
+export async function createRental(data: RentalCreate): Promise<Rental> {
+  const res = await fetch(`${API_BASE}/rentals`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || 'Failed to create rental transaction');
+  }
+  return res.json();
+}
+
+export async function returnRental(id: string): Promise<Rental> {
+  const res = await fetch(`${API_BASE}/rentals/${id}/return`, {
+    method: 'POST',
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || 'Failed to process return');
+  }
+  return res.json();
+}
+
+export async function cancelRental(id: string): Promise<Rental> {
+  const res = await fetch(`${API_BASE}/rentals/${id}/cancel`, {
+    method: 'POST',
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || 'Failed to cancel rental');
+  }
+  return res.json();
 }

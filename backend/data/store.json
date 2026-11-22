@@ -7,7 +7,7 @@
       "plate_number": "R 1234 AB",
       "daily_rate": 120000,
       "status": "Available",
-      "created_at": "2026-11-22T15:27:41.972089+00:00"
+      "created_at": "2026-11-22T17:08:25.753006+00:00"
     },
     {
       "id": "VEH-002",
@@ -16,7 +16,7 @@
       "plate_number": "R 5678 CD",
       "daily_rate": 100000,
       "status": "Available",
-      "created_at": "2026-11-22T15:27:41.972098+00:00"
+      "created_at": "2026-11-22T17:08:25.753015+00:00"
     },
     {
       "id": "VEH-003",
@@ -25,7 +25,7 @@
       "plate_number": "R 9012 EF",
       "daily_rate": 80000,
       "status": "Available",
-      "created_at": "2026-11-22T15:27:41.972100+00:00"
+      "created_at": "2026-11-22T17:08:25.753016+00:00"
     },
     {
       "id": "VEH-004",
@@ -34,7 +34,7 @@
       "plate_number": "B 1122 XYZ",
       "daily_rate": 350000,
       "status": "Available",
-      "created_at": "2026-11-22T15:27:41.972101+00:00"
+      "created_at": "2026-11-22T17:08:25.753018+00:00"
     },
     {
       "id": "VEH-005",
@@ -43,52 +43,7 @@
       "plate_number": "B 3344 JKL",
       "daily_rate": 450000,
       "status": "Available",
-      "created_at": "2026-11-22T15:27:41.972103+00:00"
-    },
-    {
-      "model_name": "Honda PCX 160",
-      "category": "Motor",
-      "plate_number": "R 7788 XY",
-      "daily_rate": 130000,
-      "status": "Available",
-      "id": "VEH-006",
-      "created_at": "2026-11-22T16:59:29.301389+00:00"
-    },
-    {
-      "model_name": "Suzuki Ertiga",
-      "category": "Mobil",
-      "plate_number": "R 4444 ZZ",
-      "daily_rate": 350000,
-      "status": "Rented",
-      "id": "VEH-007",
-      "created_at": "2026-11-22T16:59:29.329563+00:00"
-    },
-    {
-      "model_name": "Honda PCX 160",
-      "category": "Motor",
-      "plate_number": "R 7788 XY",
-      "daily_rate": 130000,
-      "status": "Available",
-      "id": "VEH-008",
-      "created_at": "2026-11-22T16:59:45.955178+00:00"
-    },
-    {
-      "model_name": "Honda PCX 160",
-      "category": "Motor",
-      "plate_number": "R 7788 XY",
-      "daily_rate": 130000,
-      "status": "Available",
-      "id": "VEH-009",
-      "created_at": "2026-11-22T17:00:12.496353+00:00"
-    },
-    {
-      "model_name": "Honda PCX 160",
-      "category": "Motor",
-      "plate_number": "R 7788 XY",
-      "daily_rate": 130000,
-      "status": "Available",
-      "id": "VEH-010",
-      "created_at": "2026-11-22T17:01:52.279317+00:00"
+      "created_at": "2026-11-22T17:08:25.753019+00:00"
     }
   ],
   "customers": [
@@ -98,15 +53,15 @@
       "phone": "081234567801",
       "license_number": "SIM-C-010293",
       "status": "Active",
-      "created_at": "2026-11-22T15:27:41.972105+00:00"
+      "created_at": "2026-11-22T17:08:25.753024+00:00"
     },
     {
       "id": "CUST-002",
       "name": "Siti Rahmawati",
-      "phone": "08999999999",
+      "phone": "081398765402",
       "license_number": "SIM-A-029384",
-      "status": "Blacklisted",
-      "created_at": "2026-11-22T15:27:41.972106+00:00"
+      "status": "Active",
+      "created_at": "2026-11-22T17:08:25.753026+00:00"
     },
     {
       "id": "CUST-003",
@@ -114,55 +69,7 @@
       "phone": "085611223303",
       "license_number": "SIM-C-038475",
       "status": "Blacklisted",
-      "created_at": "2026-11-22T15:27:41.972108+00:00"
-    },
-    {
-      "name": "Rian Hidayat",
-      "phone": "081299887766",
-      "license_number": "SIM-A-998877",
-      "status": "Active",
-      "id": "CUST-004",
-      "created_at": "2026-11-22T15:33:51.745123+00:00"
-    },
-    {
-      "name": "Rian Hidayat",
-      "phone": "081299887766",
-      "license_number": "SIM-A-998877",
-      "status": "Active",
-      "id": "CUST-005",
-      "created_at": "2026-11-22T15:38:18.909873+00:00"
-    },
-    {
-      "name": "Rian Hidayat",
-      "phone": "081299887766",
-      "license_number": "SIM-A-998877",
-      "status": "Active",
-      "id": "CUST-006",
-      "created_at": "2026-11-22T16:39:28.789512+00:00"
-    },
-    {
-      "name": "Rian Hidayat",
-      "phone": "081299887766",
-      "license_number": "SIM-A-998877",
-      "status": "Active",
-      "id": "CUST-007",
-      "created_at": "2026-11-22T16:50:01.606927+00:00"
-    },
-    {
-      "name": "Rian Hidayat",
-      "phone": "081299887766",
-      "license_number": "SIM-A-998877",
-      "status": "Active",
-      "id": "CUST-008",
-      "created_at": "2026-11-22T17:00:12.432204+00:00"
-    },
-    {
-      "name": "Rian Hidayat",
-      "phone": "081299887766",
-      "license_number": "SIM-A-998877",
-      "status": "Active",
-      "id": "CUST-009",
-      "created_at": "2026-11-22T17:01:52.199100+00:00"
+      "created_at": "2026-11-22T17:08:25.753027+00:00"
     }
   ],
   "rentals": []

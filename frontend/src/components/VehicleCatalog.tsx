@@ -7,6 +7,7 @@ import {
   updateVehicle,
   deleteVehicle
 } from '../api';
+import { BookingModal } from './BookingModal';
 import {
   Car,
   Bike,
@@ -32,6 +33,10 @@ export const VehicleCatalog: React.FC = () => {
   const [statusFilter, setStatusFilter] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [viewMode, setViewMode] = useState<'public' | 'admin'>('public');
+
+  // Booking Modal State
+  const [bookingVehicle, setBookingVehicle] = useState<Vehicle | null>(null);
+  const [showBookingModal, setShowBookingModal] = useState<boolean>(false);
 
   // Modal State
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -144,6 +149,11 @@ export const VehicleCatalog: React.FC = () => {
       currency: 'IDR',
       maximumFractionDigits: 0
     }).format(amount);
+  };
+
+  const handleBookingSuccess = (rentalId: string) => {
+    alert(`Transaksi sewa berhasil diterbitkan dengan ID: ${rentalId}!\nStatus armada telah otomatis diperbarui menjadi Rented.`);
+    loadVehicles();
   };
 
   return (
@@ -348,7 +358,10 @@ export const VehicleCatalog: React.FC = () => {
                   <div className="px-6 py-4 bg-slate-50 border-t border-slate-100">
                     <button
                       disabled={veh.status !== 'Available'}
-                      onClick={() => alert(`Pemesanan armada ${veh.model_name} (${veh.id}) akan diproses pada modul Tiket 04 (Rental Transaction Engine).`)}
+                      onClick={() => {
+                        setBookingVehicle(veh);
+                        setShowBookingModal(true);
+                      }}
                       className={`w-full py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
                         veh.status === 'Available'
                           ? 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-sm'
@@ -589,6 +602,13 @@ export const VehicleCatalog: React.FC = () => {
           </div>
         </div>
       )}
+      {/* Booking Transaction Modal (Multi-Entity) */}
+      <BookingModal
+        vehicle={bookingVehicle}
+        isOpen={showBookingModal}
+        onClose={() => setShowBookingModal(false)}
+        onSuccess={handleBookingSuccess}
+      />
     </div>
   );
 };
