@@ -1,6 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { type Customer, fetchCustomers, createCustomer, updateCustomer, deleteCustomer } from '../api';
-import { UserCheck, UserX, Plus, Search, RefreshCw, AlertCircle, Trash2, Edit2, ShieldAlert } from 'lucide-react';
+import {
+  type Customer,
+  type Rental,
+  fetchCustomers,
+  createCustomer,
+  updateCustomer,
+  deleteCustomer,
+  fetchRentals
+} from '../api';
+import {
+  UserCheck,
+  UserX,
+  Plus,
+  Search,
+  RefreshCw,
+  AlertCircle,
+  Trash2,
+  Edit2,
+  ShieldAlert,
+  History
+} from 'lucide-react';
 
 export const CustomerManagement: React.FC = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -20,6 +39,11 @@ export const CustomerManagement: React.FC = () => {
   });
   const [formSubmitting, setFormSubmitting] = useState<boolean>(false);
   const [formError, setFormError] = useState<string | null>(null);
+
+  // Customer History Modal State
+  const [historyCustomer, setHistoryCustomer] = useState<Customer | null>(null);
+  const [customerRentals, setCustomerRentals] = useState<Rental[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState<boolean>(false);
 
   const loadData = async () => {
     try {
@@ -62,6 +86,19 @@ export const CustomerManagement: React.FC = () => {
     setShowModal(true);
   };
 
+  const openHistoryModal = async (cust: Customer) => {
+    setHistoryCustomer(cust);
+    setLoadingHistory(true);
+    try {
+      const data = await fetchRentals(undefined, cust.id);
+      setCustomerRentals(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingHistory(false);
+    }
+  };
+
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitting(true);
@@ -101,6 +138,16 @@ export const CustomerManagement: React.FC = () => {
       alert(err.message);
     }
   };
+
+  const formatIDR = (val: number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      maximumFractionDigits: 0
+    }).format(val);
+  };
+
+  const totalSpent = customerRentals.reduce((sum, r) => sum + (r.rental_status !== 'Canceled' ? r.total_cost : 0), 0);
 
   return (
     <div className="space-y-6">
@@ -218,7 +265,14 @@ export const CustomerManagement: React.FC = () => {
                         </span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-right space-x-2">
+                    <td className="px-6 py-4 text-right space-x-1.5">
+                      <button
+                        onClick={() => openHistoryModal(cust)}
+                        title="Lihat Riwayat Sewa"
+                        className="p-1.5 text-indigo-600 border border-indigo-200 hover:bg-indigo-50 rounded-lg transition-colors cursor-pointer"
+                      >
+                        <History className="w-4 h-4" />
+                      </button>
                       <button
                         onClick={() => handleToggleStatus(cust)}
                         title={cust.status === 'Active' ? 'Set Blacklist' : 'Set Active'}
@@ -253,7 +307,120 @@ export const CustomerManagement: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal Dialog for Add / Edit */}
+      {/* Customer Rental History Modal (2 Entitas: Customer + Rental) */}
+      {historyCustomer && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+          <div className="bg-white w-full max-w-2xl rounded-2xl border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+            <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shadow-xs">
+                  <History className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 text-base">
+                    Riwayat Sewa: {historyCustomer.name} ({historyCustomer.id})
+                  </h3>
+                  <p className="text-xs text-slate-500">SIM: {historyCustomer.license_number} • Kontak: {historyCustomer.phone}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setHistoryCustomer(null)}
+                className="text-slate-400 hover:text-slate-600 text-lg cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              {/* Summary Stats */}
+              <div className="grid grid-cols-3 gap-3">
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-xs text-slate-400 block font-medium">Total Transaksi</span>
+                  <span className="text-lg font-bold text-slate-900">{customerRentals.length} Kali</span>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-xs text-slate-400 block font-medium">Total Pengeluaran</span>
+                  <span className="text-lg font-bold text-blue-600">{formatIDR(totalSpent)}</span>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-xs text-slate-400 block font-medium">Status Akun</span>
+                  <span className={`text-sm font-bold ${historyCustomer.status === 'Active' ? 'text-emerald-600' : 'text-rose-600'}`}>
+                    {historyCustomer.status}
+                  </span>
+                </div>
+              </div>
+
+              {/* Transactions List */}
+              <div className="border border-slate-200 rounded-xl overflow-hidden max-h-72 overflow-y-auto">
+                <table className="w-full text-left text-xs text-slate-600">
+                  <thead className="bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 uppercase">
+                    <tr>
+                      <th className="px-4 py-2.5">ID Sewa</th>
+                      <th className="px-4 py-2.5">Unit Armada</th>
+                      <th className="px-4 py-2.5">Durasi & Biaya</th>
+                      <th className="px-4 py-2.5">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {loadingHistory ? (
+                      <tr>
+                        <td colSpan={4} className="px-4 py-8 text-center text-slate-400">
+                          Memuat riwayat sewa...
+                        </td>
+                      </tr>
+                    ) : customerRentals.length === 0 ? (
+                      <tr>
+                        <td colSpan={4} className="px-4 py-8 text-center text-slate-400">
+                          Pelanggan ini belum pernah melakukan transaksi sewa.
+                        </td>
+                      </tr>
+                    ) : (
+                      customerRentals.map((r) => (
+                        <tr key={r.id} className="hover:bg-slate-50/75">
+                          <td className="px-4 py-3 font-mono font-bold text-slate-900">{r.id}</td>
+                          <td className="px-4 py-3 font-mono text-slate-700">{r.vehicle_id}</td>
+                          <td className="px-4 py-3">
+                            <span className="font-semibold text-blue-600">{formatIDR(r.total_cost)}</span>
+                            <span className="text-slate-400"> ({r.duration_days} hari)</span>
+                          </td>
+                          <td className="px-4 py-3">
+                            {r.rental_status === 'Ongoing' && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                                Ongoing
+                              </span>
+                            )}
+                            {r.rental_status === 'Completed' && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                Completed
+                              </span>
+                            )}
+                            {r.rental_status === 'Canceled' && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                                Canceled
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 text-right">
+              <button
+                onClick={() => setHistoryCustomer(null)}
+                className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium rounded-xl text-xs transition-colors cursor-pointer"
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Dialog for Add / Edit Customer */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
           <div className="bg-white w-full max-w-md rounded-2xl border border-slate-200 shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">

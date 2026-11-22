@@ -4,11 +4,11 @@
 
 **Blocked by:** 04: Rental Transaction Engine & Booking Workflow
 
-**Status:** ready-for-agent
+**Status:** completed
 
-- [ ] REST API endpoint `POST /api/rentals/{id}/return` implemented to mark rental `Completed`, record `returned_at` timestamp, and atomically reset vehicle to `Available`.
-- [ ] REST API endpoint `POST /api/rentals/{id}/cancel` implemented to abort ongoing rental and return vehicle to `Available`.
-- [ ] REST API query filter supported to fetch rental history by `customer_id` (`GET /api/rentals?customer_id=CUST-xxx`).
-- [ ] Pytest suite covering return, cancellation, and customer history retrieval.
-- [ ] React frontend Admin Rental Management table displaying active and past rentals with direct Return and Cancel action buttons.
-- [ ] React frontend Customer Detail modal showing full historical rental transactions and total spending.
+- [x] REST API endpoint `POST /api/rentals/{id}/return` implemented to mark rental `Completed`, record `returned_at` timestamp, and atomically reset vehicle to `Available`.
+- [x] REST API endpoint `POST /api/rentals/{id}/cancel` implemented to abort ongoing rental and return vehicle to `Available`.
+- [x] REST API query filter supported to fetch rental history by `customer_id` (`GET /api/rentals?customer_id=CUST-xxx`).
+- [x] Pytest suite covering return, cancellation, and customer history retrieval.
+- [x] React frontend Admin Rental Management table displaying active and past rentals with direct Return and Cancel action buttons.
+- [x] React frontend Customer Detail modal showing full historical rental transactions and total spending.

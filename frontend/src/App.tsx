@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { CustomerManagement } from './components/CustomerManagement';
 import { VehicleCatalog } from './components/VehicleCatalog';
+import { RentalManagement } from './components/RentalManagement';
 import { fetchSystemInfo, type SystemInfo } from './api';
-import { Car, Users, Cloud } from 'lucide-react';
+import { Car, Users, FileText, Cloud } from 'lucide-react';
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'catalog' | 'customers'>('catalog');
+  const [activeTab, setActiveTab] = useState<'catalog' | 'customers' | 'rentals'>('catalog');
   const [systemInfo, setSystemInfo] = useState<SystemInfo | null>(null);
 
   useEffect(() => {
@@ -58,6 +59,17 @@ export function App() {
               <Users className="w-4 h-4" />
               <span>Data Pelanggan</span>
             </button>
+            <button
+              onClick={() => setActiveTab('rentals')}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-medium transition-all cursor-pointer ${
+                activeTab === 'rentals'
+                  ? 'bg-white text-blue-600 shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <FileText className="w-4 h-4" />
+              <span>Transaksi Sewa</span>
+            </button>
           </nav>
 
           {/* Cloud Telemetry Badge */}
@@ -76,6 +88,7 @@ export function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
         {activeTab === 'catalog' && <VehicleCatalog />}
         {activeTab === 'customers' && <CustomerManagement />}
+        {activeTab === 'rentals' && <RentalManagement />}
       </main>
 
       {/* Footer */}
