@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { CustomerManagement } from './components/CustomerManagement';
+import { VehicleCatalog } from './components/VehicleCatalog';
 import { fetchSystemInfo, type SystemInfo } from './api';
 import { Car, Users, Cloud } from 'lucide-react';
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'catalog' | 'customers'>('customers');
+  const [activeTab, setActiveTab] = useState<'catalog' | 'customers'>('catalog');
   const [systemInfo, setSystemInfo] = useState<SystemInfo | null>(null);
 
   useEffect(() => {
@@ -36,17 +37,6 @@ export function App() {
           {/* Navigation View Switcher */}
           <nav className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-sm">
             <button
-              onClick={() => setActiveTab('customers')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-medium transition-all cursor-pointer ${
-                activeTab === 'customers'
-                  ? 'bg-white text-blue-600 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              <Users className="w-4 h-4" />
-              <span>Data Pelanggan</span>
-            </button>
-            <button
               onClick={() => setActiveTab('catalog')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-medium transition-all cursor-pointer ${
                 activeTab === 'catalog'
@@ -56,6 +46,17 @@ export function App() {
             >
               <Car className="w-4 h-4" />
               <span>Katalog Armada</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('customers')}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-medium transition-all cursor-pointer ${
+                activeTab === 'customers'
+                  ? 'bg-white text-blue-600 shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Users className="w-4 h-4" />
+              <span>Data Pelanggan</span>
             </button>
           </nav>
 
@@ -73,24 +74,8 @@ export function App() {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+        {activeTab === 'catalog' && <VehicleCatalog />}
         {activeTab === 'customers' && <CustomerManagement />}
-        {activeTab === 'catalog' && (
-          <div className="bg-white p-12 rounded-2xl border border-slate-200 text-center shadow-xs">
-            <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4">
-              <Car className="w-8 h-8" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-900">Katalog Armada & Manajemen Kendaraan</h3>
-            <p className="text-sm text-slate-500 max-w-md mx-auto mt-2">
-              Modul ini merupakan bagian dari <strong>Tiket 03</strong> (Katalog Armada & CRUD Kendaraan) yang akan dieksekusi selanjutnya.
-            </p>
-            <button
-              onClick={() => setActiveTab('customers')}
-              className="mt-6 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-colors cursor-pointer"
-            >
-              Kembali ke Manajemen Pelanggan
-            </button>
-          </div>
-        )}
       </main>
 
       {/* Footer */}
