@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/.venv/
+.venv/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment & OS
+.env
+.env.local
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+dist/
+
+# Agent Skills & Local Assistant Configs
+.agents/
+.claude/
+agent/
+skills-lock.json
+
+# Coursework Documents
+*.docx
+*.pdf
+Tugas-9 Dasar Komputasi Awan.docx

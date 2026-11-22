@@ -1,0 +1,100 @@
+{
+  "vehicles": [
+    {
+      "id": "VEH-001",
+      "model_name": "Yamaha NMAX 155",
+      "category": "Motor",
+      "plate_number": "R 1234 AB",
+      "daily_rate": 120000,
+      "status": "Available",
+      "created_at": "2026-11-22T15:27:41.972089+00:00"
+    },
+    {
+      "id": "VEH-002",
+      "model_name": "Honda Vario 160",
+      "category": "Motor",
+      "plate_number": "R 5678 CD",
+      "daily_rate": 100000,
+      "status": "Available",
+      "created_at": "2026-11-22T15:27:41.972098+00:00"
+    },
+    {
+      "id": "VEH-003",
+      "model_name": "Honda BeAT Deluxe",
+      "category": "Motor",
+      "plate_number": "R 9012 EF",
+      "daily_rate": 80000,
+      "status": "Available",
+      "created_at": "2026-11-22T15:27:41.972100+00:00"
+    },
+    {
+      "id": "VEH-004",
+      "model_name": "Toyota Avanza 1.5G",
+      "category": "Mobil",
+      "plate_number": "B 1122 XYZ",
+      "daily_rate": 350000,
+      "status": "Available",
+      "created_at": "2026-11-22T15:27:41.972101+00:00"
+    },
+    {
+      "id": "VEH-005",
+      "model_name": "Mitsubishi Xpander Ultimate",
+      "category": "Mobil",
+      "plate_number": "B 3344 JKL",
+      "daily_rate": 450000,
+      "status": "Available",
+      "created_at": "2026-11-22T15:27:41.972103+00:00"
+    }
+  ],
+  "customers": [
+    {
+      "id": "CUST-001",
+      "name": "Andi Pratama",
+      "phone": "081234567801",
+      "license_number": "SIM-C-010293",
+      "status": "Active",
+      "created_at": "2026-11-22T15:27:41.972105+00:00"
+    },
+    {
+      "id": "CUST-002",
+      "name": "Siti Rahmawati",
+      "phone": "08999999999",
+      "license_number": "SIM-A-029384",
+      "status": "Blacklisted",
+      "created_at": "2026-11-22T15:27:41.972106+00:00"
+    },
+    {
+      "id": "CUST-003",
+      "name": "Dimas Saputra",
+      "phone": "085611223303",
+      "license_number": "SIM-C-038475",
+      "status": "Blacklisted",
+      "created_at": "2026-11-22T15:27:41.972108+00:00"
+    },
+    {
+      "name": "Rian Hidayat",
+      "phone": "081299887766",
+      "license_number": "SIM-A-998877",
+      "status": "Active",
+      "id": "CUST-004",
+      "created_at": "2026-11-22T15:33:51.745123+00:00"
+    },
+    {
+      "name": "Rian Hidayat",
+      "phone": "081299887766",
+      "license_number": "SIM-A-998877",
+      "status": "Active",
+      "id": "CUST-005",
+      "created_at": "2026-11-22T15:38:18.909873+00:00"
+    },
+    {
+      "name": "Rian Hidayat",
+      "phone": "081299887766",
+      "license_number": "SIM-A-998877",
+      "status": "Active",
+      "id": "CUST-006",
+      "created_at": "2026-11-22T16:39:28.789512+00:00"
+    }
+  ],
+  "rentals": []
+}
