@@ -75,7 +75,7 @@ export interface SystemInfo {
   uptime_seconds: number;
 }
 
-const API_BASE = '/api';
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '') + '/api';
 
 export async function fetchSystemInfo(): Promise<SystemInfo> {
   const res = await fetch(`${API_BASE}/info`);

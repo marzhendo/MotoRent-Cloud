@@ -7,7 +7,7 @@
       "plate_number": "R 1234 AB",
       "daily_rate": 120000,
       "status": "Available",
-      "created_at": "2026-11-22T17:14:54.546469+00:00"
+      "created_at": "2026-11-22T17:20:58.250690+00:00"
     },
     {
       "id": "VEH-002",
@@ -16,7 +16,7 @@
       "plate_number": "R 5678 CD",
       "daily_rate": 100000,
       "status": "Available",
-      "created_at": "2026-11-22T17:14:54.546477+00:00"
+      "created_at": "2026-11-22T17:20:58.250697+00:00"
     },
     {
       "id": "VEH-003",
@@ -25,7 +25,7 @@
       "plate_number": "R 9012 EF",
       "daily_rate": 80000,
       "status": "Available",
-      "created_at": "2026-11-22T17:14:54.546479+00:00"
+      "created_at": "2026-11-22T17:20:58.250699+00:00"
     },
     {
       "id": "VEH-004",
@@ -34,7 +34,7 @@
       "plate_number": "B 1122 XYZ",
       "daily_rate": 350000,
       "status": "Available",
-      "created_at": "2026-11-22T17:14:54.546480+00:00"
+      "created_at": "2026-11-22T17:20:58.250700+00:00"
     },
     {
       "id": "VEH-005",
@@ -43,7 +43,7 @@
       "plate_number": "B 3344 JKL",
       "daily_rate": 450000,
       "status": "Available",
-      "created_at": "2026-11-22T17:14:54.546482+00:00"
+      "created_at": "2026-11-22T17:20:58.250702+00:00"
     }
   ],
   "customers": [
@@ -53,7 +53,7 @@
       "phone": "081234567801",
       "license_number": "SIM-C-010293",
       "status": "Active",
-      "created_at": "2026-11-22T17:14:54.546484+00:00"
+      "created_at": "2026-11-22T17:20:58.250703+00:00"
     },
     {
       "id": "CUST-002",
@@ -61,7 +61,7 @@
       "phone": "081398765402",
       "license_number": "SIM-A-029384",
       "status": "Active",
-      "created_at": "2026-11-22T17:14:54.546486+00:00"
+      "created_at": "2026-11-22T17:20:58.250705+00:00"
     },
     {
       "id": "CUST-003",
@@ -69,7 +69,7 @@
       "phone": "085611223303",
       "license_number": "SIM-C-038475",
       "status": "Blacklisted",
-      "created_at": "2026-11-22T17:14:54.546487+00:00"
+      "created_at": "2026-11-22T17:20:58.250706+00:00"
     }
   ],
   "rentals": []

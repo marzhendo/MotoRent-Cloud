@@ -92,7 +92,7 @@ class JsonStore:
             file_path = os.path.join(base_dir, "data", "store.json")
             
         self.file_path = file_path
-        self._lock = threading.Lock()
+        self._lock = threading.RLock()
         self._data: Dict[str, List[Dict[str, Any]]] = {}
         self._load_or_initialize()
 
