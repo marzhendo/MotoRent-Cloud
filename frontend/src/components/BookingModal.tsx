@@ -114,8 +114,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-slate-900 text-base">Konfirmasi Pemesanan Sewa</h3>
-              <p className="text-xs text-slate-500">Transaksi Multi-Entitas: Pelanggan, Armada & Rental</p>
+              <h3 className="font-bold text-slate-900 text-base">Konfirmasi Reservasi Sewa Kendaraan</h3>
+              <p className="text-xs text-slate-500">Periksa rincian unit dan durasi peminjaman sebelum konfirmasi.</p>
             </div>
           </div>
           <button
@@ -136,10 +136,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           )}
 
           {/* Selected Vehicle Card Preview */}
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-blue-600 shadow-xs">
-                {vehicle.category === 'Motor' ? <Bike className="w-6 h-6" /> : <Car className="w-6 h-6" />}
+              <div className="w-16 h-12 rounded-xl bg-white border border-slate-200 overflow-hidden flex items-center justify-center shrink-0">
+                {vehicle.image_url ? (
+                  <img src={vehicle.image_url} alt={vehicle.model_name} className="w-full h-full object-cover" />
+                ) : vehicle.category === 'Motor' ? (
+                  <Bike className="w-6 h-6 text-blue-600" />
+                ) : (
+                  <Car className="w-6 h-6 text-blue-600" />
+                )}
               </div>
               <div>
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-blue-600">

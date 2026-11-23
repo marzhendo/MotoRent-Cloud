@@ -50,3 +50,8 @@ skills-lock.json
 *.docx
 *.pdf
 Tugas-9 Dasar Komputasi Awan.docx
+
+# Scratch temporary downloads
+.scratch/raw_vehicles/
+.scratch/wireframe_pages/
+.scratch/*.cjs

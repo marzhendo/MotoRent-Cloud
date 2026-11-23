@@ -24,6 +24,7 @@ function AppContent() {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'catalog' | 'customers' | 'rentals' | 'my-rentals'>('dashboard');
   const [view, setView] = useState<'app' | 'login' | 'register'>('app');
   const [systemInfo, setSystemInfo] = useState<SystemInfo | null>(null);
+  const [pendingVehicleId, setPendingVehicleId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchSystemInfo()
@@ -81,8 +82,8 @@ function AppContent() {
                   Cloud
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 font-medium hidden sm:block">
-                CAK3EAB3 Komputasi Awan Terdistribusi
+              <p className="text-[11px] text-slate-500 font-medium hidden sm:block">
+                Rental Motor &amp; Mobil Terpercaya
               </p>
             </div>
           </div>
@@ -205,15 +206,17 @@ function AppContent() {
               </div>
             )}
 
-            {/* Cloud Telemetry Badge */}
-            <div className="hidden lg:flex items-center gap-2 bg-slate-900 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-mono border border-slate-800">
-              <div className="flex items-center gap-1.5 text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <Cloud className="w-3.5 h-3.5" />
+            {/* For Admin: Show clean system badge */}
+            {isAdmin && (
+              <div className="hidden lg:flex items-center gap-2 bg-slate-900 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-mono border border-slate-800">
+                <div className="flex items-center gap-1.5 text-emerald-400">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <Cloud className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-slate-400">Node:</span>
+                <span className="font-semibold text-white">{systemInfo ? systemInfo.instance_id : 'connecting...'}</span>
               </div>
-              <span className="text-slate-400">Node:</span>
-              <span className="font-semibold text-white">{systemInfo ? systemInfo.instance_id : 'connecting...'}</span>
-            </div>
+            )}
           </div>
         </div>
       </header>
@@ -222,10 +225,15 @@ function AppContent() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
         {activeTab === 'dashboard' && (
           <Dashboard
-            onRequireLogin={() => setView('login')}
+            onRequireLogin={(vehicleId?: string) => {
+              if (vehicleId) setPendingVehicleId(vehicleId);
+              setView('login');
+            }}
             onNavigateToRegister={() => setView('register')}
             onNavigateToMyRentals={() => setActiveTab('my-rentals')}
             onManageFleet={() => setActiveTab('catalog')}
+            pendingVehicleId={pendingVehicleId}
+            onClearPendingVehicle={() => setPendingVehicleId(null)}
           />
         )}
         {activeTab === 'catalog' && isAdmin && <VehicleCatalog />}
@@ -236,20 +244,74 @@ function AppContent() {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-5 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="font-semibold text-slate-700">© 2026 MotoRent Cloud</span>
-            <span>•</span>
-            <span>CAK3EAB3 Komputasi Awan dan Terdistribusi</span>
-            <span className="hidden md:inline">•</span>
-            <span className="hidden md:inline">Telkom University Purwokerto</span>
+      {/* Commercial Mobility Footer */}
+      <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            {/* Col 1: Brand & Bio */}
+            <div className="space-y-3 md:col-span-2">
+              <div className="flex items-center gap-2">
+                <span className="font-black text-white text-lg tracking-tight">MotoRent</span>
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                  Cloud
+                </span>
+              </div>
+              <p className="text-slate-400 text-xs max-w-sm leading-relaxed">
+                Platform rental motor dan mobil terpercaya. Menghadirkan armada berkualitas, tarif harian transparan, dan verifikasi SIM cepat untuk kenyamanan mobilitas Anda di Purwokerto dan sekitarnya.
+              </p>
+              <div className="pt-2 text-[11px] text-slate-500">
+                Layanan Pelanggan: 07:00 – 22:00 WIB • Pengambilan Garasi &amp; Antar-Jemput Unit
+              </div>
+            </div>
+
+            {/* Col 2: Pilihan Armada */}
+            <div className="space-y-2">
+              <div className="font-bold text-white text-xs uppercase tracking-wider">Kategori Armada</div>
+              <ul className="space-y-1.5 text-slate-400">
+                <li className="hover:text-white transition-colors cursor-pointer" onClick={() => setActiveTab('dashboard')}>
+                  Motor Matic Harian (BeAT, Vario)
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer" onClick={() => setActiveTab('dashboard')}>
+                  Maxi Scooter Premium (NMAX 155)
+                </li>
+                <li className="hover:text-white transition-colors cursor-pointer" onClick={() => setActiveTab('dashboard')}>
+                  Mobil Keluarga &amp; Bisnis (Avanza, Xpander)
+                </li>
+                <li className="text-slate-500">Paket Sewa 1 Hari, 3 Hari, &amp; Mingguan</li>
+              </ul>
+            </div>
+
+            {/* Col 3: Jaminan & Bantuan */}
+            <div className="space-y-2">
+              <div className="font-bold text-white text-xs uppercase tracking-wider">Standar Layanan</div>
+              <ul className="space-y-1.5 text-slate-400">
+                <li className="flex items-center gap-1.5">
+                  <span className="text-emerald-400">✓</span> Unit Rutin Servis Resmi
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <span className="text-emerald-400">✓</span> 100% Bersih &amp; Disinfeksi
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <span className="text-emerald-400">✓</span> Asuransi Proteksi Dasar
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <span className="text-emerald-400">✓</span> Bantuan Darurat 24 Jam
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="flex items-center gap-3 text-slate-400 font-medium text-[11px]">
-            <span>FastAPI In-Memory JSON</span>
-            <span>•</span>
-            <span>AWS Multi-AZ & ALB Ready</span>
+
+          {/* Bottom Bar: Copyright & Discreet Academic/Telemetry info */}
+          <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
+            <div>
+              © 2026 MotoRent Cloud. Hak Cipta Dilindungi • Telkom University Purwokerto
+            </div>
+            <div className="flex items-center gap-2 font-mono text-[10px] text-slate-600">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
+              <span>Cluster: {systemInfo ? systemInfo.instance_id : 'aws-multiaz-cluster'}</span>
+              <span>•</span>
+              <span>FastAPI In-Memory Engine</span>
+            </div>
           </div>
         </div>
       </footer>

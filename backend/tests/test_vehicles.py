@@ -142,7 +142,7 @@ async def test_vehicle_extended_attributes_seats_transmission_image():
         data = response.json()
         assert data["seats"] == 2
         assert data["transmission"] == "Matic"
-        assert "/vehicles/yamaha-nmax.svg" in data["image_url"]
+        assert "/vehicles/yamaha-nmax" in data["image_url"]
 
         # Create custom vehicle with custom seats and transmission
         new_veh = {

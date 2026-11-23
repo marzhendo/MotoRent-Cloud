@@ -15,7 +15,7 @@ INITIAL_SEED_DATA = {
             "status": "Available",
             "seats": 2,
             "transmission": "Matic",
-            "image_url": "/vehicles/yamaha-nmax.svg",
+            "image_url": "/vehicles/yamaha-nmax.png",
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
@@ -27,7 +27,7 @@ INITIAL_SEED_DATA = {
             "status": "Available",
             "seats": 2,
             "transmission": "Matic",
-            "image_url": "/vehicles/honda-vario.svg",
+            "image_url": "/vehicles/honda-vario.png",
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
@@ -39,7 +39,7 @@ INITIAL_SEED_DATA = {
             "status": "Available",
             "seats": 2,
             "transmission": "Matic",
-            "image_url": "/vehicles/honda-beat.svg",
+            "image_url": "/vehicles/honda-beat.png",
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
@@ -51,7 +51,7 @@ INITIAL_SEED_DATA = {
             "status": "Available",
             "seats": 7,
             "transmission": "Manual",
-            "image_url": "/vehicles/toyota-avanza.svg",
+            "image_url": "/vehicles/toyota-avanza.png",
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
@@ -63,7 +63,7 @@ INITIAL_SEED_DATA = {
             "status": "Available",
             "seats": 7,
             "transmission": "Matic",
-            "image_url": "/vehicles/mitsubishi-xpander.svg",
+            "image_url": "/vehicles/mitsubishi-xpander.png",
             "created_at": datetime.now(timezone.utc).isoformat()
         }
     ],

@@ -50,36 +50,39 @@ flowchart TD
 
 ## 1. Wireframe: Halaman Dashboard Utama (Public & Customer)
 
-Halaman utama yang diakses pengguna saat membuka aplikasi. Berisi navigasi atas, hero banner komputasi awan, metrik statistik langsung, dan grid kartu armada interaktif.
+Halaman utama yang diakses pengguna saat membuka aplikasi. Berisi navigasi atas komersial yang bersih, hero banner mobilitas modern, metrik statistik langsung, grid kartu armada interaktif berfoto asli, serta edukasi alur dan FAQ sewa.
 
 ![Wireframe 01 - Dashboard Utama](./wireframes/01-dashboard.png)
 
 ```text
 +---------------------------------------------------------------------------------------------------------------+
-|  [LOGO] MotoRent [Cloud]   | [Dashboard]  [Kelola Armada*]  [Data Pelanggan*]  [Semua Transaksi*] | [Node: ec2-az1] |
-|                            | (Tamu: [Dashboard]) (Customer: [Dashboard]  [Sewa Saya])        | [Masuk] [Daftar]|
+|  [LOGO] MotoRent [Cloud]   | [Dashboard]  [Kelola Armada*]  [Data Pelanggan*]  [Semua Transaksi*] | [Masuk] [Daftar]|
+|  Rental Motor & Mobil      | (Tamu: [Dashboard]) (Customer: [Dashboard]  [Sewa Saya])        | [Profil User]   |
 +---------------------------------------------------------------------------------------------------------------+
 |                                                                                                               |
 |  +=========================================================================================================+  |
-|  |  (•) Komputasi Awan Terdistribusi • Node: ec2-ap-southeast-3a-node1                                      |  |
+|  |  [★] Rental Motor & Mobil Terpercaya di Purwokerto                                                      |  |
 |  |                                                                                                         |  |
-|  |  SEWA KENDARAAN CEPAT, TRANSPARAN, DAN SIAP JALAN                                                       |  |
-|  |  Pusat rental motor dan mobil terpercaya dengan sistem terdistribusi tanpa database eksternal.           |  |
+|  |  SEWA MOTOR & MOBIL TANPA RIBET, SIAP JALAN.                                                            |  |
+|  |  Pilihan armada prima di Purwokerto dengan tarif harian transparan, unit terawat berkala,                |  |
+|  |  dan verifikasi SIM instan untuk kenyamanan mobilitas Anda.                                             |  |
 |  |                                                                                                         |  |
-|  |  [ Jelajahi Armada -> ]   [ Daftar Akun Pelanggan ] / [ Lihat Sewa Saya ]                               |  |
+|  |  (v) Unit Rutin Servis Resmi    (v) 100% Bersih & Disinfeksi    (v) Tarif Transparan & Pasti            |  |
+|  |                                                                                                         |  |
+|  |  [ Pilih Armada Sekarang -> ]   [ Masuk ke Akun ] / [ Sewa Saya ]                                       |  |
 |  +=========================================================================================================+  |
 |                                                                                                               |
 |  +--------------------+  +--------------------+  +--------------------+  +--------------------+               |
 |  | TOTAL ARMADA       |  | UNIT TERSEDIA      |  | SEDANG DISEWA      |  | PELANGGAN AKTIF    |               |
-|  |      5 Unit        |  |      5 Unit        |  |      0 Unit        |  |     3 Orang        |               |
-|  | Motor & Mobil      |  | Siap Sewa Sekarang |  | Transaksi Berjalan |  | SIM Terverifikasi  |               |
+|  |      5 Unit        |  |      5 Unit        |  |      0 Unit        |  |     2 Pelanggan    |               |
+|  | Motor & Mobil      |  | Siap Sewa Sekarang |  | Unit di Jalan      |  | Terverifikasi      |               |
 |  +--------------------+  +--------------------+  +--------------------+  +--------------------+               |
 |                                                                                                               |
-|  Katalog Pilihan Armada                                                                                       |
+|  Pilihan Armada Tersedia                                                                                      |
 |  [ Semua Kategori ]  [ (o) Motor ]  [ [=] Mobil ]            [ Cari armada/plat... ] [Semua Status v] [R]     |
 |                                                                                                               |
 |  +-----------------------------+  +-----------------------------+  +-----------------------------+            |
-|  | [ GAMBAR MOTOR YAMAHA NMAX ]|  | [ GAMBAR MOTOR HONDA VARIO ]|  | [ GAMBAR MOBIL TOYOTA AVANZA|            |
+|  | [ FOTO ASLI YAMAHA NMAX ]   |  | [ FOTO ASLI HONDA VARIO ]   |  | [ FOTO ASLI TOYOTA AVANZA ] |            |
 |  | (•) Motor         [Tersedia]|  | (•) Motor         [Tersedia]|  | [=] Mobil         [Tersedia]|            |
 |  |                             |  |                             |  |                             |            |
 |  | Yamaha NMAX 155             |  | Honda Vario 160             |  | Toyota Avanza 1.5G          |            |
@@ -92,22 +95,29 @@ Halaman utama yang diakses pengguna saat membuka aplikasi. Berisi navigasi atas,
 |  | [    Sewa Sekarang ->    ]  |  | [    Sewa Sekarang ->    ]  |  | [    Sewa Sekarang ->    ]  |            |
 |  +-----------------------------+  +-----------------------------+  +-----------------------------+            |
 |                                                                                                               |
+|  3 Langkah Mudah Memulai Sewa:                                                                                |
+|  [ 1. Pilih Kendaraan ] -------> [ 2. Tentukan Durasi ] -------> [ 3. Ambil & Siap Jalan ]                    |
+|                                                                                                               |
+|  Standar Keamanan & Kepercayaan MotoRent (4 Pilar Layanan) & Tanya Jawab Populer (FAQ)                        |
+|                                                                                                               |
 +---------------------------------------------------------------------------------------------------------------+
-|  MotoRent Cloud • Telkom University Purwokerto     |     FastAPI In-Memory JSON • Target AWS EC2 Multi-AZ     |
+|  MotoRent Cloud • Hak Cipta Dilindungi • Telkom University Purwokerto   |  Cluster: ec2-node • FastAPI Engine |
 +---------------------------------------------------------------------------------------------------------------+
 ```
 
 ### Penjelasan Komponen UI:
-1. **Header / Navbar:** Logo vektor MotoRent, badge telemetri `Node: ec2-xxx` yang memantau instance backend pemroses, tab menu berbasis hak akses pengguna (Role-Based), serta menu status akun/logout.
-2. **Hero Section:** Judul utama proposisi nilai, status ketersediaan node komputasi awan, dan tombol aksi cepat (*CTA*).
-3. **Quick Stats Grid:** 4 kartu metrik dinamis yang menghitung langsung armada total, unit tersedia, unit disewa, dan pelanggan aktif dari backend.
-4. **Fleet Cards Grid:** Kartu kendaraan rasio 16:9 yang memuat foto unit, nomor plat, spesifikasi cepat (kapasitas kursi & jenis transmisi), tarif sewa per hari, dan tombol pemesanan instan.
+1. **Header / Navbar:** Logo vektor MotoRent Cloud, navigasi berbasis peran pengguna (Role-Based Access Control), profil kapsul terautentikasi (Andi Pratama / Administrator), serta tombol Masuk/Daftar bagi pengunjung umum tanpa badge teknis yang mengganggu.
+2. **Hero Section:** Proposisi nilai komersial kelas industri mobilitas modern dengan pilar jaminan servis resmi, kebersihan unit, dan transparansi tarif harian.
+3. **Quick Stats Grid:** 4 kartu metrik dinamis yang memantau inventaris armada total, unit tersedia, unit aktif berjalan, dan pelanggan aktif terdaftar.
+4. **Fleet Cards Grid:** Kartu armada kendaraan berfoto asli studio (16:10), badge kategori, nomor plat registrasi, spesifikasi cepat (kapasitas kursi & transmisi), tarif sewa per hari, dan aksi pemesanan langsung dengan *state preservation* (otomatis membuka modal sewa pasca login).
+5. **Edukasi & FAQ:** Bagian panduan 3 langkah mudah memesan armada dan 4 akordion FAQ untuk meningkatkan kepercayaan calon penyewa.
+6. **Footer Komersial:** Direktori kategori armada, standar garansi, kontak operasional garasi, serta catatan kluster telemetri di sudut kanan bawah.
 
 ---
 
 ## 2. Wireframe: Halaman Autentikasi — Login (Split-Screen)
 
-Halaman masuk akun bagi Admin dan Pelanggan, mengusung arsitektur *Split-Screen* dengan tombol cepat *1-Click Demo Login* untuk mempermudah evaluasi dosen dan penguji.
+Halaman masuk akun bagi Pengguna dan Administrator, mengusung tata letak *Split-Screen* bertema *Tech Mobility Dark Slate* dengan fitur *1-Click Demo Login* yang mempermudah pengujian instan.
 
 ![Wireframe 02 - Login](./wireframes/02-login.png)
 
@@ -116,32 +126,33 @@ Halaman masuk akun bagi Admin dan Pelanggan, mengusung arsitektur *Split-Screen*
 |                                                                                                               |
 |  +-------------------------------------+  +----------------------------------------------------------------+  |
 |  | [<- Kembali ke Beranda]             |  | Masuk ke Akun Anda                                             |  |
-|  |                                     |  | Gunakan email terdaftar atau pilih akun demo di bawah.         |  |
+|  |                                     |  | Masukkan email dan kata sandi untuk mengelola sewa kendaraan.  |  |
 |  | [LOGO] MotoRent                     |  |                                                                |  |
-|  | Cloud Mobility                      |  | ALAMAT EMAIL *                                                 |  |
-|  |                                     |  | [ @ nama@email.com                                          ]  |  |
-|  | Solusi Rental Kendaraan Modern      |  |                                                                |  |
-|  | Platform komputasi awan             |  | KATA SANDI *                                                   |  |
-|  | terdistribusi tanpa database        |  | [ * ••••••••                                                ]  |  |
-|  | eksternal. Akses armada mobil dan   |  |                                                                |  |
-|  | motor dengan pemantauan real-time.  |  | [               Masuk Sekarang  ->                         ]  |  |
-|  |                                     |  |                                                                |  |
-|  | (v) Pemesanan cepat langsung        |  | -------------------------------------------------------------- |  |
-|  |     terhubung ke profil SIM         |  | ⚡ 1-CLICK DEMO LOGIN (PENGUJIAN & DOSEN)                       |  |
-|  | (v) Validasi ketersediaan armada    |  | [ (Shield) Demo Admin ]       [ (User) Demo Pelanggan ]        |  |
-|  |     secara atomik                   |  | (admin@motorent.cloud)        (andi@motorent.cloud)            |  |
-|  | (v) Multi-node load balancing       |  |                                                                |  |
-|  |                                     |  | Belum memiliki akun? [Daftar Akun Pelanggan Baru]             |  |
-|  | CAK3EAB3 Komputasi Awan             |  |                                                                |  |
+|  | Rental Motor & Mobil                |  | ⚡ AKSES CEPAT AKUN DEMO (EVALUASI)                             |  |
+|  |                                     |  | [ (Shield) Demo Admin ]       [ (User) Demo Pelanggan ]        |  |
+|  | Mobilitas Andal untuk               |  | (admin@motorent.cloud)        (andi@motorent.cloud)            |  |
+|  | Setiap Perjalanan Anda              |  |                                                                |  |
+|  |                                     |  | --------- atau gunakan email terdaftar ----------------------- |  |
+|  | Platform rental motor dan mobil     |  |                                                                |  |
+|  | terpercaya. Nikmati tarif harian    |  | ALAMAT EMAIL *                                                 |  |
+|  | jujur tanpa biaya tersembunyi, unit |  | [ @ nama@email.com                                          ]  |  |
+|  | selalu prima, dan kemudahan sewa    |  |                                                                |  |
+|  | langsung jalan.                     |  | KATA SANDI *                                                   |  |
+|  |                                     |  | [ * ••••••••                                                ]  |  |
+|  | (v) Tarif Harian Transparan Tanpa   |  |                                                                |  |
+|  |     Biaya Tersembunyi               |  | [               Masuk ke Akun  ->                          ]  |  |
+|  | (v) Unit Terawat Berkala di         |  |                                                                |  |
+|  |     Bengkel Resmi                   |  | Belum memiliki akun? [Daftar Akun Pelanggan Baru]             |  |
+|  | (v) Pengambilan Unit Tepat Waktu    |  |                                                                |  |
 |  +-------------------------------------+  +----------------------------------------------------------------+  |
 |                                                                                                               |
 +---------------------------------------------------------------------------------------------------------------+
 ```
 
 ### Penjelasan Komponen UI:
-1. **Panel Kiri (Branding & Identitas):** Latar belakang gradien biru royal elegan, logo SVG, proposisi nilai, dan keunggulan arsitektur sistem.
-2. **Panel Kanan (Formulir Masuk):** Input email dan kata sandi dengan validasi inline dan proteksi keamanan hash PBKDF2.
-3. **1-Click Quick Demo Bar:** Menyediakan tombol akses instan satu klik untuk masuk sebagai **Admin** (`admin@motorent.cloud`) atau **Customer** (`andi@motorent.cloud`) tanpa harus mengetik manual.
+1. **Panel Kiri (Branding Komersial):** Nuansa *dark slate* elegan dengan pencahayaan aksen biru/emerald, nilai jual layanan mobilitas tanpa embel-embel jargon komputasi awan.
+2. **Panel Kanan (Formulir Masuk):** Input email dan kata sandi dengan validasi bersih dan keamanan hash PBKDF2.
+3. **1-Click Quick Demo Bar:** Menyediakan akses sekali klik (*1-click instant login*) untuk menguji akun **Admin Operasional** maupun **Pelanggan Terdaftar (Andi Pratama)** tanpa harus mengetik manual.
 
 ---
 
@@ -159,17 +170,19 @@ Halaman pendaftaran mandiri pelanggan yang secara atomik membuat akun pengguna s
 |  |                                     |  | Lengkapi data di bawah untuk mengaktifkan akun penyewa Anda.   |  |
 |  | [LOGO] MotoRent                     |  |                                                                |  |
 |  | Registrasi Pelanggan                |  | NAMA LENGKAP *                                                 |  |
-|  |                                     |  | [ (User) Budi Santoso                                       ]  |  |
-|  | Mulai Sewa Armada Anda              |  |                                                                |  |
-|  | Daftarkan diri Anda dalam satu      |  | ALAMAT EMAIL *               | KATA SANDI *                    |  |
-|  | langkah mudah. Data SIM Anda        |  | [ @ budi@email.com         ] | [ * ••••••••                  ] |  |
-|  | langsung diverifikasi untuk         |  |                                                                |  |
-|  | kelayakan sewa motor dan mobil.     |  | NO. HANDPHONE / WA *         | NOMOR SIM (A / C) *             |  |
-|  |                                     |  | [ (Phone) 081234567890     ] | [ (Card) SIM-A-987654         ] |  |
-|  | (v) Langsung siap sewa tanpa antre  |  |                                                                |  |
-|  | (v) Riwayat transaksi sewa mandiri  |  | [               Daftar Akun Sekarang ->                    ]  |  |
-|  | (v) Enkripsi token sesi aman (JWT)  |  |                                                                |  |
-|  |                                     |  | Sudah memiliki akun? [Masuk di sini]                           |  |
+|  |                                     |  | [ (User) Nama lengkap sesuai KTP/SIM                        ]  |  |
+|  | Satu Akun untuk Semua               |  |                                                                |  |
+|  | Kebutuhan Sewa Anda                 |  | ALAMAT EMAIL *               | KATA SANDI *                    |  |
+|  |                                     |  | [ @ email@domain.com       ] | [ * ••••••••                  ] |  |
+|  | Daftarkan diri Anda dalam 2 menit.  |  |                                                                |  |
+|  | Verifikasi data SIM dilakukan       |  | NO. HANDPHONE / WA *         | NOMOR SIM (A / C) *             |  |
+|  | langsung saat registrasi sehingga   |  | [ (Phone) 081234567890     ] | [ (Card) SIM-A / SIM-C        ] |  |
+|  | Anda dapat langsung memesan armada  |  |                                                                |  |
+|  | motor atau mobil kapan saja.        |  | [               Daftar Akun Sekarang ->                    ]  |  |
+|  |                                     |  |                                                                |  |
+|  | (v) Verifikasi SIM Langsung Aktif   |  | Sudah memiliki akun? [Masuk di sini]                           |  |
+|  | (v) Pantau Sewa & Bukti Bayar       |  |                                                                |  |
+|  | (v) Akses Sewa Ulang Instan         |  |                                                                |  |
 |  +-------------------------------------+  +----------------------------------------------------------------+  |
 |                                                                                                               |
 +---------------------------------------------------------------------------------------------------------------+

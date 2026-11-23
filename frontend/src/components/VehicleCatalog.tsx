@@ -300,57 +300,80 @@ export const VehicleCatalog: React.FC = () => {
               {vehicles.map((veh) => (
                 <div
                   key={veh.id}
-                  className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                  className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
                 >
-                  <div className="p-6 space-y-4">
-                    {/* Header Card: Category & Status */}
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
-                        {veh.category === 'Motor' ? <Bike className="w-3.5 h-3.5 text-blue-600" /> : <Car className="w-3.5 h-3.5 text-blue-600" />}
-                        {veh.category}
-                      </span>
+                  <div>
+                    {/* Vehicle Photography */}
+                    <div className="relative aspect-[16/10] bg-slate-900 overflow-hidden flex items-center justify-center p-3">
+                      {veh.image_url ? (
+                        <img
+                          src={veh.image_url}
+                          alt={veh.model_name}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                          onError={(e) => {
+                            (e.target as HTMLElement).style.display = 'none';
+                          }}
+                        />
+                      ) : (
+                        <div className="text-slate-600 flex flex-col items-center">
+                          {veh.category === 'Motor' ? <Bike className="w-12 h-12" /> : <Car className="w-12 h-12" />}
+                        </div>
+                      )}
 
-                      {veh.status === 'Available' && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
-                          <CheckCircle2 className="w-3 h-3" />
-                          Tersedia
+                      {/* Floating Category Badge */}
+                      <div className="absolute top-3 left-3">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-900/80 backdrop-blur-md text-white border border-white/10">
+                          {veh.category === 'Motor' ? <Bike className="w-3.5 h-3.5 text-blue-400" /> : <Car className="w-3.5 h-3.5 text-blue-400" />}
+                          {veh.category}
                         </span>
-                      )}
-                      {veh.status === 'Rented' && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">
-                          <Clock className="w-3 h-3" />
-                          Sedang Disewa
-                        </span>
-                      )}
-                      {veh.status === 'Maintenance' && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-rose-50 text-rose-700 border border-rose-200">
-                          <Wrench className="w-3 h-3" />
-                          Perawatan
-                        </span>
-                      )}
-                    </div>
+                      </div>
 
-                    {/* Vehicle Title & Plate */}
-                    <div>
-                      <h3 className="text-lg font-bold text-slate-900 tracking-tight">
-                        {veh.model_name}
-                      </h3>
-                      <div className="mt-1 flex items-center gap-2 text-xs font-mono text-slate-500">
-                        <span className="px-2 py-0.5 bg-slate-100 rounded border border-slate-200 font-semibold text-slate-700">
-                          {veh.plate_number}
-                        </span>
-                        <span>•</span>
-                        <span>ID: {veh.id}</span>
+                      {/* Floating Status Badge */}
+                      <div className="absolute top-3 right-3">
+                        {veh.status === 'Available' && (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/90 text-white backdrop-blur-md shadow-xs">
+                            <CheckCircle2 className="w-3 h-3" />
+                            Tersedia
+                          </span>
+                        )}
+                        {veh.status === 'Rented' && (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-500/90 text-white backdrop-blur-md shadow-xs">
+                            <Clock className="w-3 h-3" />
+                            Sedang Disewa
+                          </span>
+                        )}
+                        {veh.status === 'Maintenance' && (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-rose-500/90 text-white backdrop-blur-md shadow-xs">
+                            <Wrench className="w-3 h-3" />
+                            Perawatan
+                          </span>
+                        )}
                       </div>
                     </div>
 
-                    {/* Pricing */}
-                    <div className="pt-2 border-t border-slate-100 flex items-baseline justify-between">
-                      <span className="text-xs text-slate-400 font-medium">Tarif Harian</span>
-                      <span className="text-xl font-extrabold text-blue-600">
-                        {formatIDR(veh.daily_rate)}
-                        <span className="text-xs font-normal text-slate-400"> /hari</span>
-                      </span>
+                    <div className="p-6 space-y-4">
+                      {/* Vehicle Title & Plate */}
+                      <div>
+                        <h3 className="text-lg font-bold text-slate-900 tracking-tight">
+                          {veh.model_name}
+                        </h3>
+                        <div className="mt-1 flex items-center gap-2 text-xs font-mono text-slate-500">
+                          <span className="px-2 py-0.5 bg-slate-100 rounded border border-slate-200 font-semibold text-slate-700">
+                            {veh.plate_number}
+                          </span>
+                          <span>•</span>
+                          <span>ID: {veh.id}</span>
+                        </div>
+                      </div>
+
+                      {/* Pricing */}
+                      <div className="pt-2 border-t border-slate-100 flex items-baseline justify-between">
+                        <span className="text-xs text-slate-400 font-medium">Tarif Harian</span>
+                        <span className="text-xl font-extrabold text-blue-600">
+                          {formatIDR(veh.daily_rate)}
+                          <span className="text-xs font-normal text-slate-400"> /hari</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -414,8 +437,27 @@ export const VehicleCatalog: React.FC = () => {
                       <td className="px-6 py-4 font-mono font-medium text-slate-800">
                         {veh.id}
                       </td>
-                      <td className="px-6 py-4 font-semibold text-slate-900">
-                        {veh.model_name}
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-9 rounded-lg bg-slate-900 overflow-hidden flex items-center justify-center shrink-0 border border-slate-800">
+                            {veh.image_url ? (
+                              <img
+                                src={veh.image_url}
+                                alt={veh.model_name}
+                                className="w-full h-full object-contain p-0.5"
+                                onError={(e) => {
+                                  (e.target as HTMLElement).style.display = 'none';
+                                }}
+                              />
+                            ) : (
+                              veh.category === 'Motor' ? <Bike className="w-4 h-4 text-slate-400" /> : <Car className="w-4 h-4 text-slate-400" />
+                            )}
+                          </div>
+                          <div>
+                            <div className="font-semibold text-slate-900">{veh.model_name}</div>
+                            <div className="text-[11px] text-slate-400 font-mono">Plat: {veh.plate_number}</div>
+                          </div>
+                        </div>
                       </td>
                       <td className="px-6 py-4">
                         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">
