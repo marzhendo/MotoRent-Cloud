@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { Dashboard } from './components/Dashboard';
 import { CustomerManagement } from './components/CustomerManagement';
 import { VehicleCatalog } from './components/VehicleCatalog';
 import { RentalManagement } from './components/RentalManagement';
@@ -14,12 +15,13 @@ import {
   LogIn,
   UserPlus,
   LogOut,
-  BookmarkCheck
+  BookmarkCheck,
+  LayoutDashboard
 } from 'lucide-react';
 
 function AppContent() {
   const { user, isAuthenticated, isAdmin, isCustomer, logout } = useAuth();
-  const [activeTab, setActiveTab] = useState<'catalog' | 'customers' | 'rentals' | 'my-rentals'>('catalog');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'catalog' | 'customers' | 'rentals' | 'my-rentals'>('dashboard');
   const [view, setView] = useState<'app' | 'login' | 'register'>('app');
   const [systemInfo, setSystemInfo] = useState<SystemInfo | null>(null);
 
@@ -29,12 +31,12 @@ function AppContent() {
       .catch((err) => console.error('Telemetry fetch failed:', err));
   }, []);
 
-  // When switching role, ensure active tab is valid
+  // When switching role or logging out, ensure active tab is valid
   useEffect(() => {
-    if (!isAuthenticated && activeTab !== 'catalog') {
-      setActiveTab('catalog');
-    } else if (isCustomer && (activeTab === 'customers' || activeTab === 'rentals')) {
-      setActiveTab('catalog');
+    if (!isAuthenticated && activeTab !== 'dashboard') {
+      setActiveTab('dashboard');
+    } else if (isCustomer && (activeTab === 'customers' || activeTab === 'rentals' || activeTab === 'catalog')) {
+      setActiveTab('dashboard');
     }
   }, [isAuthenticated, isCustomer, activeTab]);
 
@@ -66,7 +68,7 @@ function AppContent() {
           {/* Brand Logo & Name */}
           <div
             onClick={() => {
-              setActiveTab('catalog');
+              setActiveTab('dashboard');
               setView('app');
             }}
             className="flex items-center gap-3 cursor-pointer shrink-0"
@@ -88,20 +90,31 @@ function AppContent() {
           {/* Role-Aware Navigation Bar */}
           <nav className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-sm overflow-x-auto max-w-full">
             <button
-              onClick={() => setActiveTab('catalog')}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
-                activeTab === 'catalog'
+              onClick={() => setActiveTab('dashboard')}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
+                activeTab === 'dashboard'
                   ? 'bg-white text-blue-600 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <Car className="w-4 h-4" />
-              <span>Katalog Armada</span>
+              <LayoutDashboard className="w-4 h-4" />
+              <span>Dashboard</span>
             </button>
 
             {/* Admin Tabs */}
             {isAdmin && (
               <>
+                <button
+                  onClick={() => setActiveTab('catalog')}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
+                    activeTab === 'catalog'
+                      ? 'bg-white text-blue-600 shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Car className="w-4 h-4" />
+                  <span>Kelola Armada</span>
+                </button>
                 <button
                   onClick={() => setActiveTab('customers')}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
@@ -131,7 +144,7 @@ function AppContent() {
             {isCustomer && (
               <button
                 onClick={() => setActiveTab('my-rentals')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
                   activeTab === 'my-rentals'
                     ? 'bg-white text-blue-600 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -207,7 +220,15 @@ function AppContent() {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
-        {activeTab === 'catalog' && <VehicleCatalog />}
+        {activeTab === 'dashboard' && (
+          <Dashboard
+            onRequireLogin={() => setView('login')}
+            onNavigateToRegister={() => setView('register')}
+            onNavigateToMyRentals={() => setActiveTab('my-rentals')}
+            onManageFleet={() => setActiveTab('catalog')}
+          />
+        )}
+        {activeTab === 'catalog' && isAdmin && <VehicleCatalog />}
         {activeTab === 'customers' && isAdmin && <CustomerManagement />}
         {activeTab === 'rentals' && isAdmin && <RentalManagement />}
         {activeTab === 'my-rentals' && isCustomer && (
