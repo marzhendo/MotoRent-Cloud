@@ -131,3 +131,36 @@ async def test_delete_vehicle_guard_when_rented():
         # Now deletion succeeds
         del_success = await client.delete(f"/api/vehicles/{veh_id}")
         assert del_success.status_code == 200
+
+@pytest.mark.asyncio
+async def test_vehicle_extended_attributes_seats_transmission_image():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        # Check seed vehicle VEH-001 has extended attributes
+        response = await client.get("/api/vehicles/VEH-001")
+        assert response.status_code == 200
+        data = response.json()
+        assert data["seats"] == 2
+        assert data["transmission"] == "Matic"
+        assert "/vehicles/yamaha-nmax.svg" in data["image_url"]
+
+        # Create custom vehicle with custom seats and transmission
+        new_veh = {
+            "model_name": "Toyota Innova Zenix",
+            "category": "Mobil",
+            "plate_number": "B 9999 INN",
+            "daily_rate": 600000,
+            "status": "Available",
+            "seats": 8,
+            "transmission": "Matic",
+            "image_url": "/vehicles/placeholder.svg"
+        }
+        create_resp = await client.post("/api/vehicles", json=new_veh)
+        assert create_resp.status_code == 201
+        created = create_resp.json()
+        assert created["seats"] == 8
+        assert created["transmission"] == "Matic"
+        assert created["image_url"] == "/vehicles/placeholder.svg"
+
+        # Clean up
+        await client.delete(f"/api/vehicles/{created['id']}")

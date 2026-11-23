@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="cloudGrad" x1="64" y1="96" x2="448" y2="416" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="wheelGrad" x1="180" y1="220" x2="380" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="speedGlow" x1="120" y1="256" x2="400" y2="256" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#1e3a8a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle for crisp high-contrast app icon -->
+  <rect width="512" height="512" rx="128" fill="url(#cloudGrad)" filter="url(#subtleShadow)"/>
+
+  <!-- Dynamic Cloud Silhouette in the upper half -->
+  <path d="M196 156C196 122.863 222.863 96 256 96C285.592 96 310.222 117.388 315.111 145.474C322.756 142.548 331.144 141 340 141C373.137 141 400 167.863 400 201C400 206.516 399.255 211.859 397.863 216.929C414.939 226.791 426 245.545 426 268C426 300.033 400.033 326 368 326L160 326C124.654 326 96 297.346 96 262C96 228.608 121.579 201.196 154.218 198.271C158.468 174.453 175.244 156 196 156Z" fill="#ffffff" fill-opacity="0.2"/>
+
+  <!-- Sleek Aerodynamic Velocity Stream -->
+  <path d="M112 316 C160 316 190 280 240 280 C300 280 340 316 416 316" stroke="url(#speedGlow)" stroke-width="20" stroke-linecap="round"/>
+
+  <!-- Streamlined Sports Mobility Chassis -->
+  <path d="M140 292 L192 216 C204 198 224 188 246 188 L320 188 C338 188 354 196 364 212 L402 268 L370 268 C360 250 342 238 322 238 L248 238 C228 238 210 250 200 268 L150 268 Z" fill="#ffffff"/>
+
+  <!-- Motion Wheel 1 (Front/Left) -->
+  <circle cx="210" cy="326" r="44" fill="#0f172a"/>
+  <circle cx="210" cy="326" r="32" fill="url(#wheelGrad)"/>
+  <circle cx="210" cy="326" r="14" fill="#ffffff"/>
+  <line x1="210" y1="300" x2="210" y2="352" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <line x1="184" y1="326" x2="236" y2="326" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Motion Wheel 2 (Rear/Right) -->
+  <circle cx="342" cy="326" r="44" fill="#0f172a"/>
+  <circle cx="342" cy="326" r="32" fill="url(#wheelGrad)"/>
+  <circle cx="342" cy="326" r="14" fill="#ffffff"/>
+  <line x1="342" y1="300" x2="342" y2="352" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <line x1="316" y1="326" x2="368" y2="326" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Dynamic Speed Streaks -->
+  <path d="M85 264 L125 264" stroke="#60a5fa" stroke-width="8" stroke-linecap="round"/>
+  <path d="M68 290 L110 290" stroke="#93c5fd" stroke-width="8" stroke-linecap="round"/>
+  <path d="M80 316 L120 316" stroke="#60a5fa" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Connected Cloud Satellite Beacon -->
+  <circle cx="376" cy="152" r="12" fill="#10b981"/>
+  <circle cx="376" cy="152" r="22" stroke="#10b981" stroke-width="3" stroke-dasharray="4 4" opacity="0.8"/>
+</svg>

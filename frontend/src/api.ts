@@ -28,6 +28,9 @@ export interface Vehicle {
   plate_number: string;
   daily_rate: number;
   status: 'Available' | 'Rented' | 'Maintenance';
+  seats?: number;
+  transmission?: string;
+  image_url?: string;
   created_at: string;
 }
 
@@ -37,6 +40,9 @@ export interface VehicleCreate {
   plate_number: string;
   daily_rate: number;
   status: 'Available' | 'Rented' | 'Maintenance';
+  seats?: number;
+  transmission?: string;
+  image_url?: string;
 }
 
 export interface VehicleUpdate {
@@ -45,6 +51,9 @@ export interface VehicleUpdate {
   plate_number?: string;
   daily_rate?: number;
   status?: 'Available' | 'Rented' | 'Maintenance';
+  seats?: number;
+  transmission?: string;
+  image_url?: string;
 }
 
 export interface Rental {

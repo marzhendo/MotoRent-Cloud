@@ -59,6 +59,9 @@ class VehicleBase(BaseModel):
     plate_number: str = Field(..., min_length=3, max_length=20)
     daily_rate: int = Field(..., gt=0)
     status: VehicleStatus = "Available"
+    seats: int = Field(2, ge=1, le=20)
+    transmission: str = Field("Matic", max_length=20)
+    image_url: Optional[str] = Field(None, max_length=500)
 
 class VehicleCreate(VehicleBase):
     pass
@@ -69,6 +72,9 @@ class VehicleUpdate(BaseModel):
     plate_number: Optional[str] = Field(None, min_length=3, max_length=20)
     daily_rate: Optional[int] = Field(None, gt=0)
     status: Optional[VehicleStatus] = None
+    seats: Optional[int] = Field(None, ge=1, le=20)
+    transmission: Optional[str] = Field(None, max_length=20)
+    image_url: Optional[str] = Field(None, max_length=500)
 
 class VehicleResponse(VehicleBase):
     id: str

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgStudio5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="65%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="xpanderBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="50%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="glassTint2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="wheelXpander" cx="50%" cy="50%" r="50%">
+      <stop offset="65%" stop-color="#1e293b"/>
+      <stop offset="90%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <filter id="shadowXpander" x="-10%" y="-20%" width="120%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+      <feOffset dx="0" dy="16"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.32"/></feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgStudio5)"/>
+  <!-- High Stance Floor Shadow -->
+  <ellipse cx="400" cy="378" rx="335" ry="22" fill="#0f172a" opacity="0.3"/>
+  <ellipse cx="400" cy="378" rx="265" ry="12" fill="#0f172a" opacity="0.38"/>
+
+  <g filter="url(#shadowXpander)">
+    <!-- Underside Frame -->
+    <path d="M140 320 L660 320 L660 338 L140 338 Z" fill="#020617"/>
+
+    <!-- Dual-tone Rear Wheel (17-inch Diamond Cut) -->
+    <circle cx="230" cy="326" r="56" fill="url(#wheelXpander)"/>
+    <circle cx="230" cy="326" r="40" fill="#0f172a"/>
+    <circle cx="230" cy="326" r="32" fill="#94a3b8"/>
+    <circle cx="230" cy="326" r="14" fill="#f8fafc"/>
+    <path d="M230 286 L230 366 M190 326 L270 326" stroke="#ffffff" stroke-width="4"/>
+
+    <!-- Dual-tone Front Wheel -->
+    <circle cx="570" cy="326" r="56" fill="url(#wheelXpander)"/>
+    <circle cx="570" cy="326" r="40" fill="#0f172a"/>
+    <circle cx="570" cy="326" r="32" fill="#94a3b8"/>
+    <circle cx="570" cy="326" r="14" fill="#f8fafc"/>
+    <path d="M570 286 L570 366 M530 326 L610 326" stroke="#ffffff" stroke-width="4"/>
+
+    <!-- Xpander Rugged Wheel Arch Moldings (SUV Crossover Styling) -->
+    <path d="M165 315 C165 275, 295 275, 295 315" fill="none" stroke="#0f172a" stroke-width="10"/>
+    <path d="M505 315 C505 275, 635 275, 635 315" fill="none" stroke="#0f172a" stroke-width="10"/>
+
+    <!-- Main Bold Body Shell (Mitsubishi Dynamic Shield) -->
+    <path d="
+      M 130 315
+      L 125 260
+      C 125 235, 140 220, 175 210
+      L 295 150
+      C 320 138, 480 138, 515 150
+      L 600 215
+      L 665 240
+      C 680 250, 680 285, 675 315
+      L 630 315
+      C 630 280, 510 280, 510 315
+      L 290 315
+      C 290 280, 170 280, 170 315
+      Z
+    " fill="url(#xpanderBody)"/>
+
+    <!-- Floating Roof Effect (Blacked-out D-pillar) -->
+    <polygon points="175,208 200,210 295,152 280,148" fill="#0f172a"/>
+
+    <!-- Deep Sculpted Character Lines -->
+    <path d="M140 255 L660 262" stroke="#64748b" stroke-width="3"/>
+    <path d="M230 270 L570 270" stroke="#94a3b8" stroke-width="2" opacity="0.6"/>
+
+    <!-- Greenhouse Windows (Tinted) -->
+    <polygon points="510,158 590,212 535,212 495,158" fill="url(#glassTint2)"/>
+    <polygon points="410,152 485,152 525,212 410,212" fill="url(#glassTint2)"/>
+    <polygon points="305,155 400,152 400,212 305,212" fill="url(#glassTint2)"/>
+    <polygon points="205,205 295,160 295,212 205,212" fill="url(#glassTint2)"/>
+
+    <!-- Chrome Dynamic Shield Front Boomerang Accent -->
+    <path d="M625 235 C640 245, 650 265, 640 285 L650 295 C665 270, 655 245, 640 230 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+
+    <!-- T-Shape Futuristic Headlamp -->
+    <polygon points="635,260 655,262 650,278 630,275" fill="#38bdf8"/>
+    <polygon points="638,242 665,248 660,256 635,250" fill="#e0f2fe"/>
+
+    <!-- Door Seams & Handles -->
+    <line x1="300" y1="212" x2="300" y2="315" stroke="#1e293b" stroke-width="2"/>
+    <line x1="405" y1="212" x2="405" y2="315" stroke="#1e293b" stroke-width="2"/>
+    <rect x="370" y="228" width="22" height="6" rx="3" fill="#ffffff"/>
+    <rect x="475" y="228" width="22" height="6" rx="3" fill="#ffffff"/>
+
+    <!-- Distinctive L-Shape Tail Light -->
+    <path d="M125 240 L145 245 L140 275 L125 270 Z" fill="#ef4444"/>
+
+    <!-- Aggressive Side Mirror -->
+    <polygon points="500,208 528,204 532,220 505,222" fill="#1e293b" stroke="#ffffff" stroke-width="1.5"/>
+  </g>
+
+  <rect x="36" y="32" width="130" height="28" rx="8" fill="#10b981" fill-opacity="0.1"/>
+  <text x="48" y="51" font-family="sans-serif" font-size="12" font-weight="700" fill="#047857">MOBIL • MATIC</text>
+</svg>

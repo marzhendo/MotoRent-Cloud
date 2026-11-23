@@ -13,6 +13,9 @@ INITIAL_SEED_DATA = {
             "plate_number": "R 1234 AB",
             "daily_rate": 120000,
             "status": "Available",
+            "seats": 2,
+            "transmission": "Matic",
+            "image_url": "/vehicles/yamaha-nmax.svg",
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
@@ -22,6 +25,9 @@ INITIAL_SEED_DATA = {
             "plate_number": "R 5678 CD",
             "daily_rate": 100000,
             "status": "Available",
+            "seats": 2,
+            "transmission": "Matic",
+            "image_url": "/vehicles/honda-vario.svg",
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
@@ -31,6 +37,9 @@ INITIAL_SEED_DATA = {
             "plate_number": "R 9012 EF",
             "daily_rate": 80000,
             "status": "Available",
+            "seats": 2,
+            "transmission": "Matic",
+            "image_url": "/vehicles/honda-beat.svg",
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
@@ -40,6 +49,9 @@ INITIAL_SEED_DATA = {
             "plate_number": "B 1122 XYZ",
             "daily_rate": 350000,
             "status": "Available",
+            "seats": 7,
+            "transmission": "Manual",
+            "image_url": "/vehicles/toyota-avanza.svg",
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
@@ -49,6 +61,9 @@ INITIAL_SEED_DATA = {
             "plate_number": "B 3344 JKL",
             "daily_rate": 450000,
             "status": "Available",
+            "seats": 7,
+            "transmission": "Matic",
+            "image_url": "/vehicles/mitsubishi-xpander.svg",
             "created_at": datetime.now(timezone.utc).isoformat()
         }
     ],
