@@ -237,13 +237,19 @@ function AppContent() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-4 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>MotoRent Cloud • Telkom University Purwokerto</span>
-          <div className="flex items-center gap-4 text-slate-400">
-            <span>FastAPI In-Memory JSON Persistence</span>
+      <footer className="bg-white border-t border-slate-200 py-5 text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-semibold text-slate-700">© 2026 MotoRent Cloud</span>
             <span>•</span>
-            <span>Target AWS EC2 / S3 Hosting</span>
+            <span>CAK3EAB3 Komputasi Awan dan Terdistribusi</span>
+            <span className="hidden md:inline">•</span>
+            <span className="hidden md:inline">Telkom University Purwokerto</span>
+          </div>
+          <div className="flex items-center gap-3 text-slate-400 font-medium text-[11px]">
+            <span>FastAPI In-Memory JSON</span>
+            <span>•</span>
+            <span>AWS Multi-AZ & ALB Ready</span>
           </div>
         </div>
       </footer>
