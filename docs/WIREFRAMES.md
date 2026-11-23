@@ -8,6 +8,25 @@
 
 Dokumen ini memuat rancangan tata letak (*wireframe*), hierarki visual, dan penjelasan komponen antarmuka pengguna (*front-end*) untuk seluruh halaman aplikasi **MotoRent Cloud** sebagai pemenuhan laporan akademik tugas praktikum komputasi awan.
 
+## 📌 Daftar Berkas Gambar Wireframe Low-Fi (Tugas 10)
+
+Seluruh gambar rancangan antarmuka (*low-fidelity wireframe*) telah di-generate dengan format gambar beresolusi tinggi (PNG 1280x800) dan tersimpan di direktori `docs/wireframes/`. Anda dapat langsung menyalin (*copy-paste*) atau menyisipkan (*insert picture*) berkas gambar ini ke dalam dokumen laporan Word / Google Docs **Tugas 10**:
+
+| No | Halaman / Antarmuka | Berkas Gambar Wireframe (PNG) | Peran Pengguna (*Role*) |
+| :---: | :--- | :--- | :---: |
+| **01** | **Dashboard & Katalog Utama** | [`docs/wireframes/01-dashboard.png`](./wireframes/01-dashboard.png) | Publik & Pelanggan |
+| **02** | **Halaman Login (Split-Screen)** | [`docs/wireframes/02-login.png`](./wireframes/02-login.png) | Publik / Pengguna |
+| **03** | **Halaman Registrasi Pelanggan** | [`docs/wireframes/03-register.png`](./wireframes/03-register.png) | Pengunjung Baru |
+| **04** | **Modal Dialog Booking Sewa** | [`docs/wireframes/04-booking-modal.png`](./wireframes/04-booking-modal.png) | Pelanggan & Admin |
+| **05** | **Portal Sewa Saya (Histori Sewa)** | [`docs/wireframes/05-my-rentals.png`](./wireframes/05-my-rentals.png) | Pelanggan Terautentikasi |
+| **06** | **Manajemen Data Pelanggan** | [`docs/wireframes/06-customer-management.png`](./wireframes/06-customer-management.png) | Administrator |
+| **07** | **Kelola Master Armada Kendaraan** | [`docs/wireframes/07-fleet-catalog-admin.png`](./wireframes/07-fleet-catalog-admin.png) | Administrator |
+| **08** | **Kelola Semua Transaksi Sewa** | [`docs/wireframes/08-rental-management-admin.png`](./wireframes/08-rental-management-admin.png) | Administrator |
+
+---
+
+## 📌 Alur Navigasi Antarmuka Pengguna
+
 ```mermaid
 flowchart TD
     Guest["Pengunjung Tamu (Guest)"] --> W1["1. Dashboard & Katalog Publik"]
@@ -32,6 +51,8 @@ flowchart TD
 ## 1. Wireframe: Halaman Dashboard Utama (Public & Customer)
 
 Halaman utama yang diakses pengguna saat membuka aplikasi. Berisi navigasi atas, hero banner komputasi awan, metrik statistik langsung, dan grid kartu armada interaktif.
+
+![Wireframe 01 - Dashboard Utama](./wireframes/01-dashboard.png)
 
 ```text
 +---------------------------------------------------------------------------------------------------------------+
@@ -88,6 +109,8 @@ Halaman utama yang diakses pengguna saat membuka aplikasi. Berisi navigasi atas,
 
 Halaman masuk akun bagi Admin dan Pelanggan, mengusung arsitektur *Split-Screen* dengan tombol cepat *1-Click Demo Login* untuk mempermudah evaluasi dosen dan penguji.
 
+![Wireframe 02 - Login](./wireframes/02-login.png)
+
 ```text
 +---------------------------------------------------------------------------------------------------------------+
 |                                                                                                               |
@@ -126,6 +149,8 @@ Halaman masuk akun bagi Admin dan Pelanggan, mengusung arsitektur *Split-Screen*
 
 Halaman pendaftaran mandiri pelanggan yang secara atomik membuat akun pengguna sekaligus entitas profil `Customer` aktif lengkap dengan nomor SIM.
 
+![Wireframe 03 - Register](./wireframes/03-register.png)
+
 ```text
 +---------------------------------------------------------------------------------------------------------------+
 |                                                                                                               |
@@ -159,6 +184,8 @@ Halaman pendaftaran mandiri pelanggan yang secara atomik membuat akun pengguna s
 ## 4. Wireframe: Modal Dialog Konfirmasi Pemesanan Sewa
 
 Modal pop-up interaktif yang muncul saat pengguna memilih unit kendaraan yang ingin disewa.
+
+![Wireframe 04 - Modal Booking Sewa](./wireframes/04-booking-modal.png)
 
 ```text
 +-----------------------------------------------------------------------------------+
@@ -208,6 +235,8 @@ Modal pop-up interaktif yang muncul saat pengguna memilih unit kendaraan yang in
 
 Halaman mandiri khusus pelanggan untuk memantau kendaraan yang sedang disewa serta histori penyewaan masa lalunya.
 
+![Wireframe 05 - Sewa Saya](./wireframes/05-my-rentals.png)
+
 ```text
 +---------------------------------------------------------------------------------------------------------------+
 |  Riwayat Sewa Saya                                                                                            |
@@ -235,6 +264,8 @@ Halaman mandiri khusus pelanggan untuk memantau kendaraan yang sedang disewa ser
 
 Halaman manajerial untuk staf/admin guna mengelola direktori pelanggan, memantau nomor SIM, status kelayakan, serta memeriksa catatan riwayat sewa individual.
 
+![Wireframe 06 - Manajemen Data Pelanggan](./wireframes/06-customer-management.png)
+
 ```text
 +---------------------------------------------------------------------------------------------------------------+
 |  Manajemen Data Pelanggan                                                      [ + Daftarkan Pelanggan Baru ] |
@@ -260,6 +291,8 @@ Halaman manajerial untuk staf/admin guna mengelola direktori pelanggan, memantau
 
 Halaman manajerial untuk staf/admin guna menambah armada baru, memperbarui tarif sewa harian, mengatur status pemeliharaan (*maintenance*), dan menghapus kendaraan yang tidak sedang disewa.
 
+![Wireframe 07 - Kelola Master Armada](./wireframes/07-fleet-catalog-admin.png)
+
 ```text
 +---------------------------------------------------------------------------------------------------------------+
 |  Manajemen Master Armada Kendaraan                                                [ + Tambah Unit Armada ]    |
@@ -284,6 +317,8 @@ Halaman manajerial untuk staf/admin guna menambah armada baru, memperbarui tarif
 ## 8. Wireframe: Halaman Admin — Kelola Semua Transaksi Sewa
 
 Halaman operasional sentral untuk memproses pengembalian kendaraan (*return*), pembatalan rental (*cancellation*), serta audit riwayat transaksi sewa seluruh pelanggan.
+
+![Wireframe 08 - Kelola Semua Transaksi](./wireframes/08-rental-management-admin.png)
 
 ```text
 +---------------------------------------------------------------------------------------------------------------+
