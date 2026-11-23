@@ -10,7 +10,7 @@
       "seats": 2,
       "transmission": "Matic",
       "image_url": "/vehicles/yamaha-nmax.png",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     },
     {
       "id": "VEH-002",
@@ -22,7 +22,7 @@
       "seats": 2,
       "transmission": "Matic",
       "image_url": "/vehicles/honda-vario.png",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     },
     {
       "id": "VEH-003",
@@ -34,7 +34,7 @@
       "seats": 2,
       "transmission": "Matic",
       "image_url": "/vehicles/honda-beat.png",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     },
     {
       "id": "VEH-004",
@@ -46,7 +46,7 @@
       "seats": 7,
       "transmission": "Manual",
       "image_url": "/vehicles/toyota-avanza.png",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     },
     {
       "id": "VEH-005",
@@ -58,7 +58,7 @@
       "seats": 7,
       "transmission": "Matic",
       "image_url": "/vehicles/mitsubishi-xpander.png",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     }
   ],
   "customers": [
@@ -68,7 +68,7 @@
       "phone": "081234567801",
       "license_number": "SIM-C-010293",
       "status": "Active",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     },
     {
       "id": "CUST-002",
@@ -76,7 +76,7 @@
       "phone": "081398765402",
       "license_number": "SIM-A-029384",
       "status": "Active",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     },
     {
       "id": "CUST-003",
@@ -84,7 +84,7 @@
       "phone": "085611223303",
       "license_number": "SIM-C-038475",
       "status": "Blacklisted",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     }
   ],
   "rentals": [],
@@ -96,7 +96,7 @@
       "name": "Super Admin MotoRent",
       "role": "admin",
       "customer_id": null,
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     },
     {
       "id": "USER-002",
@@ -105,7 +105,7 @@
       "name": "Andi Pratama",
       "role": "customer",
       "customer_id": "CUST-001",
-      "created_at": "2026-11-23T08:35:39.351272+00:00"
+      "created_at": "2026-11-23T17:36:01.954041+00:00"
     }
   ]
 }
