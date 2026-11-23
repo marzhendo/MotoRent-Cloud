@@ -22,7 +22,12 @@ import {
   Bike
 } from 'lucide-react';
 
-export const RentalManagement: React.FC = () => {
+interface RentalManagementProps {
+  customerId?: string;
+  isCustomerView?: boolean;
+}
+
+export const RentalManagement: React.FC<RentalManagementProps> = ({ customerId, isCustomerView = false }) => {
   const [rentals, setRentals] = useState<Rental[]>([]);
   const [customers, setCustomers] = useState<Record<string, Customer>>({});
   const [vehicles, setVehicles] = useState<Record<string, Vehicle>>({});
@@ -40,7 +45,7 @@ export const RentalManagement: React.FC = () => {
       setError(null);
 
       const [rentalData, customerList, vehicleList] = await Promise.all([
-        fetchRentals(statusFilter || undefined),
+        fetchRentals(statusFilter || undefined, customerId),
         fetchCustomers(),
         fetchVehicles()
       ]);
@@ -147,9 +152,13 @@ export const RentalManagement: React.FC = () => {
       {/* Top Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
         <div>
-          <h2 className="text-xl font-bold text-slate-900">Kelola Transaksi Sewa</h2>
+          <h2 className="text-xl font-bold text-slate-900">
+            {isCustomerView ? 'Riwayat Sewa Saya' : 'Kelola Transaksi Sewa'}
+          </h2>
           <p className="text-sm text-slate-500 mt-1">
-            Monitoring transaksi sewa berjalan, proses pengembalian armada, dan audit histori sewa.
+            {isCustomerView
+              ? 'Monitoring armada yang sedang Anda sewa dan riwayat transaksi sewa masa lalu Anda.'
+              : 'Monitoring transaksi sewa berjalan, proses pengembalian armada, dan audit histori sewa.'}
           </p>
         </div>
 

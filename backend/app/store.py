@@ -93,7 +93,27 @@ INITIAL_SEED_DATA = {
             "created_at": datetime.now(timezone.utc).isoformat()
         }
     ],
-    "rentals": []
+    "rentals": [],
+    "users": [
+        {
+            "id": "USER-001",
+            "email": "admin@motorent.cloud",
+            "password_hash": "2882f7a33fc6ec8e1bef58b6e2c0cd5f$f89c2d3cd2e26243ae64ebb7627defa629c588fc36c5fb80bc3b17ef3d7640d3",
+            "name": "Super Admin MotoRent",
+            "role": "admin",
+            "customer_id": None,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "USER-002",
+            "email": "andi@motorent.cloud",
+            "password_hash": "bc1dba42e8c50302b17bc03f08ae7606$346babb99b4e3103c202d21ea629a53e056680d97c1b8a0dd746496332340c15",
+            "name": "Andi Pratama",
+            "role": "customer",
+            "customer_id": "CUST-001",
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+    ]
 }
 
 class JsonStore:

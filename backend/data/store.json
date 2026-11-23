@@ -10,7 +10,7 @@
       "seats": 2,
       "transmission": "Matic",
       "image_url": "/vehicles/yamaha-nmax.svg",
-      "created_at": "2026-11-23T06:55:45.980823+00:00"
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
     },
     {
       "id": "VEH-002",
@@ -22,7 +22,7 @@
       "seats": 2,
       "transmission": "Matic",
       "image_url": "/vehicles/honda-vario.svg",
-      "created_at": "2026-11-23T06:55:45.980823+00:00"
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
     },
     {
       "id": "VEH-003",
@@ -34,7 +34,7 @@
       "seats": 2,
       "transmission": "Matic",
       "image_url": "/vehicles/honda-beat.svg",
-      "created_at": "2026-11-23T06:55:45.980823+00:00"
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
     },
     {
       "id": "VEH-004",
@@ -46,7 +46,7 @@
       "seats": 7,
       "transmission": "Manual",
       "image_url": "/vehicles/toyota-avanza.svg",
-      "created_at": "2026-11-23T06:55:45.980823+00:00"
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
     },
     {
       "id": "VEH-005",
@@ -58,7 +58,7 @@
       "seats": 7,
       "transmission": "Matic",
       "image_url": "/vehicles/mitsubishi-xpander.svg",
-      "created_at": "2026-11-23T06:55:45.980823+00:00"
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
     }
   ],
   "customers": [
@@ -68,7 +68,7 @@
       "phone": "081234567801",
       "license_number": "SIM-C-010293",
       "status": "Active",
-      "created_at": "2026-11-23T06:55:45.980823+00:00"
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
     },
     {
       "id": "CUST-002",
@@ -76,7 +76,7 @@
       "phone": "081398765402",
       "license_number": "SIM-A-029384",
       "status": "Active",
-      "created_at": "2026-11-23T06:55:45.980823+00:00"
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
     },
     {
       "id": "CUST-003",
@@ -84,8 +84,28 @@
       "phone": "085611223303",
       "license_number": "SIM-C-038475",
       "status": "Blacklisted",
-      "created_at": "2026-11-23T06:55:45.980823+00:00"
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
     }
   ],
-  "rentals": []
+  "rentals": [],
+  "users": [
+    {
+      "id": "USER-001",
+      "email": "admin@motorent.cloud",
+      "password_hash": "2882f7a33fc6ec8e1bef58b6e2c0cd5f$f89c2d3cd2e26243ae64ebb7627defa629c588fc36c5fb80bc3b17ef3d7640d3",
+      "name": "Super Admin MotoRent",
+      "role": "admin",
+      "customer_id": null,
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
+    },
+    {
+      "id": "USER-002",
+      "email": "andi@motorent.cloud",
+      "password_hash": "bc1dba42e8c50302b17bc03f08ae7606$346babb99b4e3103c202d21ea629a53e056680d97c1b8a0dd746496332340c15",
+      "name": "Andi Pratama",
+      "role": "customer",
+      "customer_id": "CUST-001",
+      "created_at": "2026-11-23T07:04:38.880467+00:00"
+    }
+  ]
 }

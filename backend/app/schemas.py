@@ -99,3 +99,47 @@ class RentalResponse(BaseModel):
     expected_return_at: str
     returned_at: Optional[str] = None
     created_at: str
+
+# ==================== Auth Schemas ====================
+
+UserRole = Literal["admin", "customer"]
+
+class UserRegister(BaseModel):
+    email: str = Field(..., min_length=5, max_length=100)
+    password: str = Field(..., min_length=6, max_length=100)
+    name: str = Field(..., min_length=2, max_length=100)
+    phone: str = Field(..., min_length=8, max_length=20)
+    license_number: str = Field(..., min_length=3, max_length=50)
+
+    @field_validator("email")
+    @classmethod
+    def validate_email(cls, v: str) -> str:
+        clean = v.strip().lower()
+        if "@" not in clean or "." not in clean.split("@")[-1]:
+            raise ValueError("Invalid email address format.")
+        return clean
+
+    @field_validator("phone")
+    @classmethod
+    def validate_phone(cls, v: str) -> str:
+        clean = v.strip()
+        if not clean.isdigit():
+            raise ValueError("Phone number must contain digits only.")
+        return clean
+
+class UserLogin(BaseModel):
+    email: str = Field(..., min_length=3, max_length=100)
+    password: str = Field(..., min_length=1, max_length=100)
+
+class UserResponse(BaseModel):
+    id: str
+    email: str
+    name: str
+    role: UserRole
+    customer_id: Optional[str] = None
+    created_at: str
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserResponse

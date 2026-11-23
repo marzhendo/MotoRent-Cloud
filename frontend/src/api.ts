@@ -84,6 +84,34 @@ export interface SystemInfo {
   uptime_seconds: number;
 }
 
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: 'admin' | 'customer';
+  customer_id?: string | null;
+  created_at: string;
+}
+
+export interface TokenResponse {
+  access_token: string;
+  token_type: string;
+  user: User;
+}
+
+export interface RegisterPayload {
+  email: string;
+  password: string;
+  name: string;
+  phone: string;
+  license_number: string;
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '') + '/api';
 
 export async function fetchSystemInfo(): Promise<SystemInfo> {
@@ -256,6 +284,46 @@ export async function cancelRental(id: string): Promise<Rental> {
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
     throw new Error(err.detail || 'Failed to cancel rental');
+  }
+  return res.json();
+}
+
+// ==================== Authentication APIs ====================
+
+export async function loginUser(payload: LoginPayload): Promise<TokenResponse> {
+  const res = await fetch(`${API_BASE}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || 'Email atau password salah');
+  }
+  return res.json();
+}
+
+export async function registerUser(payload: RegisterPayload): Promise<TokenResponse> {
+  const res = await fetch(`${API_BASE}/auth/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || 'Pendaftaran gagal');
+  }
+  return res.json();
+}
+
+export async function fetchCurrentUser(token: string): Promise<User> {
+  const res = await fetch(`${API_BASE}/auth/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error('Sesi tidak valid atau telah berakhir');
   }
   return res.json();
 }

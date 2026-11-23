@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.routers import customers, vehicles, rentals
+from app.routers import customers, vehicles, rentals, auth
 
 # Read instance identifier from environment (useful in AWS EC2 / ECS / Container)
 INSTANCE_ID = os.getenv("INSTANCE_ID", os.getenv("HOSTNAME", socket.gethostname() or "motorent-local"))
@@ -57,6 +57,7 @@ def get_client_ip(request: Request) -> str:
     return request.client.host if request.client else "unknown"
 
 # Register Routers
+app.include_router(auth.router)
 app.include_router(customers.router)
 app.include_router(vehicles.router)
 app.include_router(rentals.router)
