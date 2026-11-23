@@ -1,7 +1,7 @@
 # MotoRent Cloud 🚗🏍️
 ### Sistem Manajemen Penyewaan Kendaraan Terdistribusi Berbasis Cloud
 **Mata Kuliah:** CAK3EAB3 Komputasi Awan dan Terdistribusi  
-**Program Studi:** S1 Teknik Informatika / Teknologi Informasi  
+**Program Studi:** S1 Teknik Informatika  
 **Institusi:** Telkom University Purwokerto  
 
 ---
@@ -206,12 +206,12 @@ MotoRent-Cloud/
 
 Proyek tugas besar ini dikerjakan oleh Kelompok dari kelas Komputasi Awan dan Terdistribusi:
 
-| No | Nama Lengkap | NIM | Peran / Kontribusi |
-| :-: | :--- | :--- | :--- |
-| 1 | [Nama Anggota 1] | [NIM Anggota 1] | Cloud Architecture & Backend Lead |
-| 2 | [Nama Anggota 2] | [NIM Anggota 2] | Frontend Developer & UI/UX |
-| 3 | [Nama Anggota 3] | [NIM Anggota 3] | QA, Unit Testing & Telemetry Audit |
-| 4 | [Nama Anggota 4] | [NIM Anggota 4] | DevOps, Docker & AWS Deployment |
+| No | Nama Lengkap | NIM | 
+| :-: | :--- | :--- | 
+| 1 | Marzhendo Galang Saputra | 103112400102 | 
+| 2 | Aedil Riski Ansyah | 103112400101 | 
+| 3 | Ryan Muhammad Saputra | 103112400109 |
+| 4 | Maruf Sarifudin | 103112400128 | 
 
 ---
 *Dikembangkan untuk Tugas Praktikum Komputasi Awan dan Terdistribusi — Telkom University Purwokerto.*
