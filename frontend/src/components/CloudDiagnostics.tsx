@@ -38,122 +38,121 @@ export const CloudDiagnostics: React.FC = () => {
   }, []);
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-200">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="bg-slate-950 p-8 rounded-3xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/80 text-cyan-300 text-xs font-bold">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Arsitektur Komputasi Awan Terdistribusi</span>
+      <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#E7E5E4] flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="space-y-1.5">
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-[#15803D]">
+            <span className="w-2 h-2 rounded-full bg-[#15803D]" aria-hidden="true" />
+            <span>Komputasi Awan Terdistribusi (Panel Khusus Admin)</span>
           </div>
-          <h2 className="text-2xl font-black text-white tracking-tight">
-            Diagnostik Sistem &amp; Kluster Multi-AZ
+          <h2 className="text-2xl font-extrabold text-[#141413] tracking-tight">
+            Diagnostik Sistem dan Kluster Multi-AZ
           </h2>
-          <p className="text-xs text-slate-400 max-w-2xl leading-relaxed">
-            Pemantauan langsung instance backend terdistribusi, reverse proxy load balancer, dan status thread-safe in-memory engine tanpa database SQL eksternal.
+          <p className="text-sm text-[#57534E] max-w-2xl">
+            Pemantauan instance backend terdistribusi, Nginx load balancer, dan status in-memory JSON store tanpa database SQL eksternal.
           </p>
         </div>
 
         <button
+          type="button"
           onClick={loadTelemetry}
-          className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 hover:bg-slate-800 text-cyan-400 border border-slate-700 rounded-2xl text-xs font-bold transition-all cursor-pointer shadow-md self-start md:self-auto shrink-0"
+          className="inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 bg-[#141413] hover:bg-[#EA580C] active:scale-[0.96] text-white rounded-lg text-xs font-bold transition-[background-color,transform] duration-150 self-start md:self-auto shrink-0 tabular-nums"
         >
-          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
           <span>Ping Node ({fetchCount}x)</span>
         </button>
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-950/60 border border-rose-800 text-rose-300 rounded-2xl text-xs">
+        <div role="alert" className="p-4 bg-[#FEF2F2] border border-[#FECACA] text-[#B91C1C] rounded-xl text-sm">
           {error}
         </div>
       )}
 
-      {/* Metric Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Node Instance Aktif</span>
-            <Server className="w-4 h-4 text-cyan-400" />
+      {/* Metric Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="bg-white p-5 rounded-xl border border-[#E7E5E4] space-y-2">
+          <div className="flex items-center justify-between text-xs font-semibold text-[#57534E]">
+            <span>Node Instance Aktif</span>
+            <Server className="w-4 h-4 text-[#EA580C]" aria-hidden="true" />
           </div>
-          <div className="font-mono text-base font-black text-white truncate">
+          <div className="font-mono text-sm font-bold text-[#141413] truncate">
             {systemInfo ? systemInfo.instance_id : 'Mendeteksi...'}
           </div>
-          <span className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-            Node Online &bull; Healthy
+          <span className="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#F0FDF4] text-[#15803D] border border-[#BBF7D0]">
+            Online &middot; Healthy
           </span>
         </div>
 
-        <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Layanan Backend</span>
-            <Cpu className="w-4 h-4 text-blue-400" />
+        <div className="bg-white p-5 rounded-xl border border-[#E7E5E4] space-y-2">
+          <div className="flex items-center justify-between text-xs font-semibold text-[#57534E]">
+            <span>Layanan Backend</span>
+            <Cpu className="w-4 h-4 text-[#EA580C]" aria-hidden="true" />
           </div>
-          <div className="text-base font-black text-white">
+          <div className="text-sm font-bold text-[#141413]">
             {systemInfo ? systemInfo.service : 'FastAPI'} v{systemInfo?.version || '2.0.0'}
           </div>
-          <span className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-cyan-400 border border-blue-500/30">
-            Python 3.12 Engine
+          <span className="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#F7F7F5] text-[#57534E] border border-[#E7E5E4]">
+            Python 3.12 Runtime
           </span>
         </div>
 
-        <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Penyimpanan Data</span>
-            <Database className="w-4 h-4 text-amber-400" />
+        <div className="bg-white p-5 rounded-xl border border-[#E7E5E4] space-y-2">
+          <div className="flex items-center justify-between text-xs font-semibold text-[#57534E]">
+            <span>Penyimpanan Data</span>
+            <Database className="w-4 h-4 text-[#EA580C]" aria-hidden="true" />
           </div>
-          <div className="text-base font-black text-white">
-            Thread-Safe JSON
-          </div>
-          <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
-            <Lock className="w-3 h-3 text-amber-400" />
+          <div className="text-sm font-bold text-[#141413]">Thread-Safe JSON</div>
+          <div className="flex items-center gap-1.5 text-[11px] text-[#57534E]">
+            <Lock className="w-3 h-3 text-[#B45309]" aria-hidden="true" />
             <span>Python RLock Synchronized</span>
           </div>
         </div>
 
-        <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Uptime Sistem</span>
-            <Activity className="w-4 h-4 text-emerald-400" />
+        <div className="bg-white p-5 rounded-xl border border-[#E7E5E4] space-y-2">
+          <div className="flex items-center justify-between text-xs font-semibold text-[#57534E]">
+            <span>Uptime Sistem</span>
+            <Activity className="w-4 h-4 text-[#15803D]" aria-hidden="true" />
           </div>
-          <div className="font-mono text-base font-black text-white">
-            {systemInfo ? `${systemInfo.uptime_seconds} Detik` : '0 Detik'}
+          <div className="font-mono text-sm font-bold text-[#141413] tabular-nums">
+            {systemInfo ? `${systemInfo.uptime_seconds} detik` : '0 detik'}
           </div>
-          <span className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">
+          <span className="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#F7F7F5] text-[#57534E] border border-[#E7E5E4]">
             Operasional Stabil
           </span>
         </div>
       </div>
 
-      {/* Cloud Architecture Diagram & Specs */}
-      <div className="bg-slate-950 p-8 rounded-3xl border border-slate-800 space-y-6">
-        <h3 className="text-lg font-bold text-white flex items-center gap-2">
-          <Layers className="w-5 h-5 text-cyan-400" />
+      {/* Topology Diagram */}
+      <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#E7E5E4] space-y-6">
+        <h3 className="text-base font-bold text-[#141413] flex items-center gap-2">
+          <Layers className="w-4 h-4 text-[#EA580C]" aria-hidden="true" />
           <span>Topologi Arsitektur Multi-Node</span>
         </h3>
 
-        <div className="p-6 bg-slate-900/80 rounded-2xl border border-slate-800 font-mono text-xs text-slate-300 space-y-4">
+        <div className="p-5 bg-[#141413] rounded-xl font-mono text-xs text-[#D6D3D1]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-            <div className="p-4 bg-slate-950 rounded-xl border border-slate-700 w-full md:w-auto">
-              <span className="text-slate-500 block text-[10px]">Client / Browser</span>
-              <span className="font-bold text-white text-sm">Vite React Frontend</span>
+            <div className="p-4 bg-[#1C1B1A] rounded-lg border border-[#262523] w-full md:w-auto">
+              <span className="text-[#A8A29E] block text-[10px]">Client / Browser</span>
+              <span className="font-bold text-white text-sm">React + Vite SPA</span>
             </div>
 
-            <ArrowRight className="w-5 h-5 text-cyan-400 shrink-0 hidden md:block" />
+            <ArrowRight className="w-5 h-5 text-[#EA580C] shrink-0 hidden md:block" aria-hidden="true" />
 
-            <div className="p-4 bg-blue-950/40 rounded-xl border border-blue-800 w-full md:w-auto">
-              <span className="text-blue-400 block text-[10px]">Reverse Proxy / ALB (Port 8080)</span>
+            <div className="p-4 bg-[#1C1B1A] rounded-lg border border-[#EA580C]/50 w-full md:w-auto">
+              <span className="text-[#EA580C] block text-[10px]">Reverse Proxy / ALB (Port 8080)</span>
               <span className="font-bold text-white text-sm">Nginx Load Balancer</span>
             </div>
 
-            <ArrowRight className="w-5 h-5 text-cyan-400 shrink-0 hidden md:block" />
+            <ArrowRight className="w-5 h-5 text-[#EA580C] shrink-0 hidden md:block" aria-hidden="true" />
 
             <div className="flex flex-col gap-2 w-full md:w-auto">
-              <div className="p-3 bg-emerald-950/40 rounded-xl border border-emerald-800">
+              <div className="p-3 bg-[#1C1B1A] rounded-lg border border-[#15803D]/50">
                 <span className="text-emerald-400 block text-[10px]">Zone A (Node 1 - Port 8001)</span>
                 <span className="font-bold text-white text-xs">FastAPI In-Memory Engine</span>
               </div>
-              <div className="p-3 bg-emerald-950/40 rounded-xl border border-emerald-800">
+              <div className="p-3 bg-[#1C1B1A] rounded-lg border border-[#15803D]/50">
                 <span className="text-emerald-400 block text-[10px]">Zone B (Node 2 - Port 8002)</span>
                 <span className="font-bold text-white text-xs">FastAPI In-Memory Engine</span>
               </div>
@@ -161,24 +160,24 @@ export const CloudDiagnostics: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-400 leading-relaxed pt-2">
-          <div className="space-y-2 bg-slate-900/40 p-5 rounded-2xl border border-slate-800">
-            <h4 className="font-bold text-white text-sm flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs text-[#57534E] leading-relaxed">
+          <div className="space-y-1.5 bg-[#F7F7F5] p-5 rounded-xl border border-[#E7E5E4]">
+            <h4 className="font-bold text-[#141413] text-sm flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-[#15803D]" aria-hidden="true" />
               <span>Kepatuhan Aturan Praktikum</span>
             </h4>
             <p>
-              Sistem ini 100% mematuhi aturan tanpa database eksternal (PostgreSQL / MySQL / SQLite). Data disimpan dan dikelola pada memori lokal thread-safe dengan persistensi JSON atomik.
+              Sistem mematuhi aturan tanpa database eksternal (PostgreSQL, MySQL, atau SQLite). Data dikelola di memori lokal thread-safe dengan persistensi JSON atomik.
             </p>
           </div>
 
-          <div className="space-y-2 bg-slate-900/40 p-5 rounded-2xl border border-slate-800">
-            <h4 className="font-bold text-white text-sm flex items-center gap-2">
-              <Cloud className="w-4 h-4 text-cyan-400" />
+          <div className="space-y-1.5 bg-[#F7F7F5] p-5 rounded-xl border border-[#E7E5E4]">
+            <h4 className="font-bold text-[#141413] text-sm flex items-center gap-2">
+              <Cloud className="w-4 h-4 text-[#EA580C]" aria-hidden="true" />
               <span>Simulasi AWS Multi-AZ Deployment</span>
             </h4>
             <p>
-              Nginx bertindak sebagai AWS Application Load Balancer yang mendistribusikan lalu lintas secara round-robin ke dua node backend independen yang merepresentasikan Availability Zone terpisah.
+              Nginx bertindak sebagai Application Load Balancer yang mendistribusikan permintaan secara round-robin ke dua node backend independen.
             </p>
           </div>
         </div>
